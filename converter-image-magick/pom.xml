@@ -19,6 +19,7 @@
         <converter-image-magick.version>0.9.0-SNAPSHOT</converter-image-magick.version>
 
         <im4java.version>1.4.0</im4java.version>
+        <tika.version>1.22</tika.version>
     </properties>
 
     <dependencies>
@@ -41,6 +42,11 @@
             <groupId>org.im4java</groupId>
             <artifactId>im4java</artifactId>
             <version>${im4java.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-core</artifactId>
+            <version>${tika.version}</version>
         </dependency>
 
         <dependency>

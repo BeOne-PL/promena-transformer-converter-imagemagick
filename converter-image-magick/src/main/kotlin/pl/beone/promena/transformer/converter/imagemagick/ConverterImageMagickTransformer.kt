@@ -1,33 +1,35 @@
 package pl.beone.promena.transformer.converter.imagemagick
 
-import pl.beone.promena.transformer.applicationmodel.exception.transformer.TransformerCouldNotTransformException
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaType
-import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants
 import pl.beone.promena.transformer.contract.Transformer
 import pl.beone.promena.transformer.contract.communication.CommunicationParameters
 import pl.beone.promena.transformer.contract.data.DataDescriptor
 import pl.beone.promena.transformer.contract.data.TransformedDataDescriptor
-import pl.beone.promena.transformer.contract.data.singleTransformedDataDescriptor
 import pl.beone.promena.transformer.contract.data.toTransformedDataDescriptor
 import pl.beone.promena.transformer.contract.model.Parameters
-import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ConverterImageMagickParametersConstants
+import pl.beone.promena.transformer.converter.imagemagick.transformer.AbstractTransformer
+import pl.beone.promena.transformer.converter.imagemagick.transformer.FileTransformer
+import pl.beone.promena.transformer.converter.imagemagick.transformer.MemoryTransformer
+import java.io.File
 
 class ConverterImageMagickTransformer(private val internalCommunicationParameters: CommunicationParameters) : Transformer {
 
+    companion object {
+        private val supporter = Supporter()
+    }
+
     override fun transform(dataDescriptor: DataDescriptor, targetMediaType: MediaType, parameters: Parameters): TransformedDataDescriptor =
-        dataDescriptor.descriptors.map { (data, _, metadata) ->
-            singleTransformedDataDescriptor(data, metadata)
-        }.toTransformedDataDescriptor()
+        dataDescriptor.descriptors
+            .map { determineTransformer().transform(it, targetMediaType, parameters) }
+            .toTransformedDataDescriptor()
 
-    override fun canTransform(dataDescriptor: DataDescriptor, targetMediaType: MediaType, parameters: Parameters) {
-        if (dataDescriptor.descriptors.any { it.mediaType.mimeType != MediaTypeConstants.TEXT_PLAIN.mimeType } || targetMediaType.mimeType != MediaTypeConstants.TEXT_PLAIN.mimeType) {
-            throw TransformerCouldNotTransformException("Supported transformation: text/plain -> text/plain")
+    private fun determineTransformer(): AbstractTransformer =
+        when (internalCommunicationParameters.getId()) {
+            "file" -> FileTransformer(internalCommunicationParameters.get("directory", File::class.java))
+            else -> MemoryTransformer()
         }
 
-        try {
-            parameters.get(ConverterImageMagickParametersConstants.EXAMPLE)
-        } catch (e: NoSuchElementException) {
-            throw TransformerCouldNotTransformException("Mandatory parameter: ${ConverterImageMagickParametersConstants.EXAMPLE}")
-        }
+    override fun isSupported(dataDescriptor: DataDescriptor, targetMediaType: MediaType, parameters: Parameters) {
+        supporter.isSupported(dataDescriptor, targetMediaType)
     }
 }

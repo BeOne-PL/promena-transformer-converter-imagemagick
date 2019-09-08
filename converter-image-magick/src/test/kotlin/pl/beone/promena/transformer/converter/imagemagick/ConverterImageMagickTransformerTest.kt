@@ -7,15 +7,15 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import pl.beone.lib.junit5.extension.docker.external.DockerExtension
-import pl.beone.promena.transformer.applicationmodel.exception.transformer.TransformerCouldNotTransformException
+import pl.beone.promena.transformer.applicationmodel.exception.transformer.TransformationNotSupportedException
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants
 import pl.beone.promena.transformer.contract.data.emptyDataDescriptor
 import pl.beone.promena.transformer.contract.data.singleDataDescriptor
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ConverterImageMagickParametersConstants
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.converterImageMagickParameters
 import pl.beone.promena.transformer.internal.model.data.toMemoryData
 import pl.beone.promena.transformer.internal.model.metadata.emptyMetadata
 import pl.beone.promena.transformer.internal.model.parameters.emptyParameters
-import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ConverterImageMagickParametersConstants
-import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.converterImageMagickParameters
 
 @ExtendWith(DockerExtension::class)
 class ConverterImageMagickTransformerTest {
@@ -43,10 +43,10 @@ class ConverterImageMagickTransformerTest {
     }
 
     @Test
-    fun canTransform_targetMediaTypeIsNotTextPlain_shouldThrowTransformerCouldNotTransformException() {
-        shouldThrow<TransformerCouldNotTransformException> {
+    fun canTransform_targetMediaTypeIsNotTextPlain_shouldThrowTransformationNotSupportedException() {
+        shouldThrow<TransformationNotSupportedException> {
             ConverterImageMagickTransformer(mockk())
-                .canTransform(
+                .isSupported(
                     emptyDataDescriptor(),
                     MediaTypeConstants.APPLICATION_PDF,
                     converterImageMagickParameters(example = "test")
@@ -55,10 +55,10 @@ class ConverterImageMagickTransformerTest {
     }
 
     @Test
-    fun canTransform_dataDescriptorMediaTypeIsNotTextPlain_shouldThrowTransformerCouldNotTransformException() {
-        shouldThrow<TransformerCouldNotTransformException> {
+    fun canTransform_dataDescriptorMediaTypeIsNotTextPlain_shouldThrowTransformationNotSupportedException() {
+        shouldThrow<TransformationNotSupportedException> {
             ConverterImageMagickTransformer(mockk())
-                .canTransform(
+                .isSupported(
                     singleDataDescriptor("".toMemoryData(), MediaTypeConstants.APPLICATION_PDF, emptyMetadata()),
                     MediaTypeConstants.TEXT_PLAIN,
                     converterImageMagickParameters(example = "test")
@@ -67,10 +67,10 @@ class ConverterImageMagickTransformerTest {
     }
 
     @Test
-    fun canTransform_noMandatoryParameter_shouldThrowTransformerCouldNotTransformException() {
-        shouldThrow<TransformerCouldNotTransformException> {
+    fun canTransform_noMandatoryParameter_shouldThrowTransformationNotSupportedException() {
+        shouldThrow<TransformationNotSupportedException> {
             ConverterImageMagickTransformer(mockk())
-                .canTransform(
+                .isSupported(
                     emptyDataDescriptor(),
                     MediaTypeConstants.TEXT_PLAIN,
                     emptyParameters()
