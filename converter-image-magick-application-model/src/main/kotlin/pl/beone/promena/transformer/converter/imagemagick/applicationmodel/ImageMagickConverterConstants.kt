@@ -2,7 +2,7 @@ package pl.beone.promena.transformer.converter.imagemagick.applicationmodel
 
 import pl.beone.promena.transformer.contract.transformer.transformerId
 
-object ConverterImageMagickConstants {
+object ImageMagickConverterConstants {
 
     const val TRANSFORMER_NAME = "converter"
 

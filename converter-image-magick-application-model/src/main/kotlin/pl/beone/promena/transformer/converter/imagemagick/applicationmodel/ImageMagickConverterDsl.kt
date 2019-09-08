@@ -1,4 +1,4 @@
-@file:JvmName("ConverterImageMagickDsl")
+@file:JvmName("ImageMagickConverterDsl")
 
 package pl.beone.promena.transformer.converter.imagemagick.applicationmodel
 
@@ -8,7 +8,7 @@ import pl.beone.promena.transformer.contract.transformation.Transformation
 import pl.beone.promena.transformer.contract.transformation.singleTransformation
 
 fun converterTransformation(targetMediaType: MediaType, parameters: Parameters): Transformation.Single =
-    singleTransformation(ConverterImageMagickConstants.TRANSFORMER_NAME, targetMediaType, parameters)
+    singleTransformation(ImageMagickConverterConstants.TRANSFORMER_NAME, targetMediaType, parameters)
 
-fun converterImageMagickTransformation(targetMediaType: MediaType, parameters: Parameters): Transformation.Single =
-    singleTransformation(ConverterImageMagickConstants.TRANSFORMER_ID, targetMediaType, parameters)
+fun imageMagickConverterTransformation(targetMediaType: MediaType, parameters: Parameters): Transformation.Single =
+    singleTransformation(ImageMagickConverterConstants.TRANSFORMER_ID, targetMediaType, parameters)

@@ -1,6 +1,6 @@
 package pl.beone.promena.transformer.converter.imagemagick.applicationmodel
 
-object ConverterImageMagickParametersConstants {
+object ImageMagickConverterParametersConstants {
 
     const val EXAMPLE = "example"
 

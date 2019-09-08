@@ -11,14 +11,14 @@ import pl.beone.promena.transformer.applicationmodel.exception.transformer.Trans
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants
 import pl.beone.promena.transformer.contract.data.emptyDataDescriptor
 import pl.beone.promena.transformer.contract.data.singleDataDescriptor
-import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ConverterImageMagickParametersConstants
-import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.converterImageMagickParameters
 import pl.beone.promena.transformer.internal.model.data.toMemoryData
 import pl.beone.promena.transformer.internal.model.metadata.emptyMetadata
 import pl.beone.promena.transformer.internal.model.parameters.emptyParameters
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.imageMagickConverterParameters
 
 @ExtendWith(DockerExtension::class)
-class ConverterImageMagickTransformerTest {
+class ImageMagickConverterTransformerTest {
 
     @Test
     fun transform() {
@@ -26,11 +26,11 @@ class ConverterImageMagickTransformerTest {
         val mediaType = MediaTypeConstants.TEXT_PLAIN
         val metadata = emptyMetadata()
 
-        ConverterImageMagickTransformer(mockk())
+        ImageMagickConverterTransformer(mockk())
             .transform(
                 singleDataDescriptor(dataContent.toMemoryData(), mediaType, metadata),
                 MediaTypeConstants.TEXT_PLAIN,
-                converterImageMagickParameters(example = "test")
+                imageMagickConverterParameters(example = "test")
             ).let {
                 val descriptors = it.descriptors
                 descriptors shouldHaveSize 1
@@ -43,38 +43,38 @@ class ConverterImageMagickTransformerTest {
     }
 
     @Test
-    fun canTransform_targetMediaTypeIsNotTextPlain_shouldThrowTransformationNotSupportedException() {
+    fun isSupported_targetMediaTypeIsNotTextPlain_shouldThrowTransformationNotSupportedException() {
         shouldThrow<TransformationNotSupportedException> {
-            ConverterImageMagickTransformer(mockk())
+            ImageMagickConverterTransformer(mockk())
                 .isSupported(
                     emptyDataDescriptor(),
                     MediaTypeConstants.APPLICATION_PDF,
-                    converterImageMagickParameters(example = "test")
+                    imageMagickConverterParameters(example = "test")
                 )
         }.message shouldBe "Supported transformation: text/plain -> text/plain"
     }
 
     @Test
-    fun canTransform_dataDescriptorMediaTypeIsNotTextPlain_shouldThrowTransformationNotSupportedException() {
+    fun isSupported_dataDescriptorMediaTypeIsNotTextPlain_shouldThrowTransformationNotSupportedException() {
         shouldThrow<TransformationNotSupportedException> {
-            ConverterImageMagickTransformer(mockk())
+            ImageMagickConverterTransformer(mockk())
                 .isSupported(
                     singleDataDescriptor("".toMemoryData(), MediaTypeConstants.APPLICATION_PDF, emptyMetadata()),
                     MediaTypeConstants.TEXT_PLAIN,
-                    converterImageMagickParameters(example = "test")
+                    imageMagickConverterParameters(example = "test")
                 )
         }.message shouldBe "Supported transformation: text/plain -> text/plain"
     }
 
     @Test
-    fun canTransform_noMandatoryParameter_shouldThrowTransformationNotSupportedException() {
+    fun isSupported_noMandatoryParameter_shouldThrowTransformationNotSupportedException() {
         shouldThrow<TransformationNotSupportedException> {
-            ConverterImageMagickTransformer(mockk())
+            ImageMagickConverterTransformer(mockk())
                 .isSupported(
                     emptyDataDescriptor(),
                     MediaTypeConstants.TEXT_PLAIN,
                     emptyParameters()
                 )
-        }.message shouldBe "Mandatory parameter: ${ConverterImageMagickParametersConstants.EXAMPLE}"
+        }.message shouldBe "Mandatory parameter: ${ImageMagickConverterParametersConstants.EXAMPLE}"
     }
 }

@@ -2,8 +2,8 @@ package pl.beone.promena.transformer.converter.imagemagick.example
 
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants
 import pl.beone.promena.transformer.contract.transformation.Transformation
-import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.converterImageMagickParameters
-import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.converterImageMagickTransformation
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.imageMagickConverterParameters
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.imageMagickConverterTransformation
 
 fun transform(): Transformation {
     // HTTP: localhost:8080
@@ -11,5 +11,5 @@ fun transform(): Transformation {
     // Concurrency: 1
     // Data: example.txt
 
-    return converterImageMagickTransformation(MediaTypeConstants.TEXT_PLAIN, converterImageMagickParameters("example"))
+    return imageMagickConverterTransformation(MediaTypeConstants.TEXT_PLAIN, imageMagickConverterParameters("example"))
 }

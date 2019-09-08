@@ -12,7 +12,7 @@ import pl.beone.promena.transformer.converter.imagemagick.transformer.FileTransf
 import pl.beone.promena.transformer.converter.imagemagick.transformer.MemoryTransformer
 import java.io.File
 
-class ConverterImageMagickTransformer(private val internalCommunicationParameters: CommunicationParameters) : Transformer {
+class ImageMagickConverterTransformer(private val internalCommunicationParameters: CommunicationParameters) : Transformer {
 
     companion object {
         private val supporter = Supporter()
