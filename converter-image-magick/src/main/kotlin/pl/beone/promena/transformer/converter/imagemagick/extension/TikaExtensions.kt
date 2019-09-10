@@ -6,5 +6,5 @@ import pl.beone.promena.transformer.applicationmodel.mediatype.MediaType
 private val tikaConfig = TikaConfig.getDefaultConfig()
 
 fun MediaType.determineExtension(): String =
-    tikaConfig.mimeRepository.forName(mimeType).extension
+    tikaConfig.mimeRepository.forName(mimeType).extension.removePrefix(".")
         .also { check(it.isNotBlank()) { "Couldn't determine extension for <${mimeType}>" } }
