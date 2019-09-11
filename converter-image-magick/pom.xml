@@ -19,7 +19,8 @@
         <converter-image-magick.version>0.9.0-SNAPSHOT</converter-image-magick.version>
 
         <im4java.version>1.4.0</im4java.version>
-        <tika.version>1.22</tika.version>
+
+        <pdfbox.version>2.0.16</pdfbox.version>
     </properties>
 
     <dependencies>
@@ -43,12 +44,20 @@
             <artifactId>im4java</artifactId>
             <version>${im4java.version}</version>
         </dependency>
+
         <dependency>
-            <groupId>org.apache.tika</groupId>
-            <artifactId>tika-core</artifactId>
-            <version>${tika.version}</version>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>${pdfbox.version}</version>
+            <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox-tools</artifactId>
+            <version>${pdfbox.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>

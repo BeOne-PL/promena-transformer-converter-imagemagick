@@ -6,18 +6,27 @@ import org.im4java.process.Pipe
 import org.im4java.process.ProcessEvent
 import org.im4java.process.ProcessTask
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaType
+import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.APPLICATION_PDF
+import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_GIF
+import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_JPEG
+import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_PNG
+import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_TIFF
 import pl.beone.promena.transformer.contract.data.DataDescriptor
 import pl.beone.promena.transformer.contract.data.TransformedDataDescriptor
 import pl.beone.promena.transformer.contract.data.singleTransformedDataDescriptor
 import pl.beone.promena.transformer.contract.model.Data
 import pl.beone.promena.transformer.contract.model.Parameters
-import pl.beone.promena.transformer.converter.imagemagick.extension.determineExtension
+import pl.beone.promena.transformer.converter.imagemagick.transformer.operation.ToPdfOperation
 import java.io.InputStream
 import java.io.OutputStream
 import java.time.Duration
 import java.util.concurrent.TimeUnit
 
 internal abstract class AbstractTransformer {
+
+    companion object {
+        val additionalOperations = listOf(ToPdfOperation())
+    }
 
     protected abstract fun getOutputStream(): OutputStream
 
@@ -26,9 +35,11 @@ internal abstract class AbstractTransformer {
     fun transform(singleDataDescriptor: DataDescriptor.Single, targetMediaType: MediaType, parameters: Parameters): TransformedDataDescriptor.Single {
         val (data, _, metadata) = singleDataDescriptor
 
+        val operation = createOperation(singleDataDescriptor.mediaType, targetMediaType, parameters)
+
         data.getInputStream().use { inputStream ->
             getOutputStream().use { outputStream ->
-                createProcessTask(inputStream, outputStream, createImOperation(targetMediaType))
+                createProcessTask(inputStream, outputStream, operation)
                     .also { process(it, { parameters.getTimeout() }) }
             }
         }
@@ -36,10 +47,26 @@ internal abstract class AbstractTransformer {
         return singleTransformedDataDescriptor(createData(), metadata)
     }
 
-    private fun createImOperation(targetMediaType: MediaType): IMOperation =
+    private fun createOperation(mediaType: MediaType, targetMediaType: MediaType, parameters: Parameters): IMOperation =
         IMOperation().apply {
             addImage("-")
-            addImage("${targetMediaType.determineExtension()}:-")
+
+            additionalOperations
+                .filter { it.isSupported(mediaType, targetMediaType, parameters) }
+                .map { it.create(mediaType, targetMediaType, parameters) }
+                .forEach { addOperation(it) }
+
+            addImage("${determineExtension(targetMediaType)}:-")
+        }
+
+    private fun determineExtension(mediaType: MediaType): String =
+        when (mediaType) {
+            IMAGE_PNG       -> "png"
+            IMAGE_JPEG      -> "jpeg"
+            IMAGE_GIF       -> "gif"
+            IMAGE_TIFF      -> "tiff"
+            APPLICATION_PDF -> "pdf"
+            else            -> throw IllegalArgumentException("Couldn't determine extension for <$mediaType>")
         }
 
     private fun createProcessTask(inputStream: InputStream, outputStream: OutputStream, imOperation: IMOperation): ProcessTask =

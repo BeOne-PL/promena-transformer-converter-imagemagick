@@ -14,22 +14,33 @@ internal class Supporter {
     companion object {
         private val supportedTransformations = listOf(
             APPLICATION_PDF to IMAGE_PNG,
+            APPLICATION_PDF to IMAGE_JPEG,
+            APPLICATION_PDF to IMAGE_GIF,
+            APPLICATION_PDF to IMAGE_TIFF,
+            APPLICATION_PDF to APPLICATION_PDF,
+
+            IMAGE_JPEG to IMAGE_PNG,
             IMAGE_JPEG to IMAGE_JPEG,
             IMAGE_JPEG to IMAGE_GIF,
-            IMAGE_JPEG to IMAGE_PNG,
             IMAGE_JPEG to IMAGE_TIFF,
-            IMAGE_GIF to IMAGE_GIF,
-            IMAGE_GIF to IMAGE_JPEG,
+            IMAGE_JPEG to APPLICATION_PDF,
+
             IMAGE_GIF to IMAGE_PNG,
+            IMAGE_GIF to IMAGE_JPEG,
+            IMAGE_GIF to IMAGE_GIF,
             IMAGE_GIF to IMAGE_TIFF,
+            IMAGE_GIF to APPLICATION_PDF,
+
             IMAGE_PNG to IMAGE_PNG,
             IMAGE_PNG to IMAGE_JPEG,
             IMAGE_PNG to IMAGE_GIF,
             IMAGE_PNG to IMAGE_TIFF,
-            IMAGE_TIFF to IMAGE_TIFF,
+            IMAGE_PNG to APPLICATION_PDF,
+
+            IMAGE_TIFF to IMAGE_PNG,
             IMAGE_TIFF to IMAGE_JPEG,
             IMAGE_TIFF to IMAGE_GIF,
-            IMAGE_TIFF to IMAGE_PNG,
+            IMAGE_TIFF to IMAGE_TIFF,
             IMAGE_TIFF to APPLICATION_PDF
         )
     }

@@ -17,8 +17,8 @@ class ImageMagickConverterTransformerCommunicationTest {
 
     @Test
     fun transform_memoryData() {
-        generalTest(
-            getResourceAsBytes(NormalImage.resourcePath).toMemoryData(),
+        imageTest(
+            getResourceAsBytes(NormalImage.ResourcePath.PNG).toMemoryData(),
             MemoryData::class,
             memoryCommunicationParameters
         )
@@ -28,8 +28,8 @@ class ImageMagickConverterTransformerCommunicationTest {
     fun transform_fileData() {
         val directory = createTempDir()
 
-        generalTest(
-            getResourceAsBytes(NormalImage.resourcePath).inputStream().toFileData(directory),
+        imageTest(
+            getResourceAsBytes(NormalImage.ResourcePath.PNG).inputStream().toFileData(directory),
             FileData::class,
             communicationParameters("file") + ("directory" to directory)
         )

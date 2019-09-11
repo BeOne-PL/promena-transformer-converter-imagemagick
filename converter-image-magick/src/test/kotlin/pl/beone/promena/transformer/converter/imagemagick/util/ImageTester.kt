@@ -2,13 +2,22 @@ package pl.beone.promena.transformer.converter.imagemagick.util
 
 import io.kotlintest.shouldBe
 import java.awt.Color
+import java.awt.image.BufferedImage
 import java.io.InputStream
 import javax.imageio.ImageIO
 
-internal class ImageTester internal constructor(inputStream: InputStream) {
+internal class ImageTester private constructor(private val image: BufferedImage) {
 
-    private val image = ImageIO.read(inputStream)
-        ?: throw IllegalArgumentException("Bytes <${String(inputStream.readAllBytes())}> can't be loaded as BufferedImage")
+    companion object {
+        fun of(inputStream: InputStream): ImageTester =
+            ImageTester(
+                ImageIO.read(inputStream)
+                    ?: throw IllegalArgumentException("Bytes <${String(inputStream.readAllBytes())}> can't be loaded as BufferedImage")
+            )
+
+        fun of(image: BufferedImage): ImageTester =
+            ImageTester(image)
+    }
 
     fun getWidth(): Int = image.width
 
