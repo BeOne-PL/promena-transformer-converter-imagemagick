@@ -17,7 +17,7 @@ internal class ToPdfOperation : AbstractOperation() {
             .units("PixelsPerInch")
             .density(72)
 
-    override  fun isSupported(mediaType: MediaType, targetMediaType: MediaType, parameters: Parameters): Boolean =
+    override fun isSupported(mediaType: MediaType, targetMediaType: MediaType, parameters: Parameters): Boolean =
         listOf(IMAGE_PNG, IMAGE_JPEG, IMAGE_GIF, IMAGE_TIFF).contains(mediaType)
                 && targetMediaType == APPLICATION_PDF
 }

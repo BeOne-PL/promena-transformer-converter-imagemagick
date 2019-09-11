@@ -3,31 +3,45 @@ package pl.beone.promena.transformer.converter.imagemagick.applicationmodel
 import io.kotlintest.shouldBe
 import io.kotlintest.shouldThrow
 import org.junit.jupiter.api.Test
-import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants
+import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_JPEG
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterConstants.TRANSFORMER_ID
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.ALLOW_ENLARGEMENT
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.HEIGHT
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.IGNORE_ASPECT_RATIO
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.WIDTH
 
 class ImageMagickConverterDslTest {
 
     @Test
-    fun imageMagickConverterParameters() {
-        imageMagickConverterParameters(example = "test", example2 = "test2").let {
-            it.get(ImageMagickConverterParametersConstants.EXAMPLE) shouldBe "test"
-            it.get(ImageMagickConverterParametersConstants.EXAMPLE2) shouldBe "test2"
+    fun `imageMagickConverterParameters _ default parameters`() {
+        imageMagickConverterParameters().let {
+            shouldThrow<NoSuchElementException> {
+                it.get(WIDTH)
+            }
+            shouldThrow<NoSuchElementException> {
+                it.get(HEIGHT)
+            }
+            it.get(IGNORE_ASPECT_RATIO) shouldBe false
+            it.get(ALLOW_ENLARGEMENT) shouldBe false
         }
     }
 
     @Test
-    fun `imageMagickConverterParameters _ no optional example2 parameter _ should throw NoSuchElementException`() {
-        shouldThrow<NoSuchElementException> {
-            imageMagickConverterParameters(example = "test")
-                .get(ImageMagickConverterParametersConstants.EXAMPLE2)
+    fun `imageMagickConverterParameters _ all parameters set`() {
+        imageMagickConverterParameters(width = 100, height = 200, ignoreAspectRatio = true, allowEnlargement = true).let {
+            it.get(WIDTH) shouldBe 100
+            it.get(HEIGHT) shouldBe 200
+            it.get(IGNORE_ASPECT_RATIO) shouldBe true
+            it.get(ALLOW_ENLARGEMENT) shouldBe true
         }
     }
 
     @Test
     fun imageMagickConverterTransformation() {
-        imageMagickConverterTransformation(MediaTypeConstants.TEXT_PLAIN, imageMagickConverterParameters(example = "test")).let {
-            it.transformerId shouldBe ImageMagickConverterConstants.TRANSFORMER_ID
-            it.targetMediaType shouldBe MediaTypeConstants.TEXT_PLAIN
+        imageMagickConverterTransformation(IMAGE_JPEG, imageMagickConverterParameters(width = 500)).let {
+            it.transformerId shouldBe TRANSFORMER_ID
+            it.targetMediaType shouldBe IMAGE_JPEG
+            it.parameters.get("width", Int::class.java) shouldBe 500
         }
     }
 }

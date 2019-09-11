@@ -28,9 +28,24 @@ internal fun imageTest(
     communicationParameters: CommunicationParameters,
     mediaType: MediaType = IMAGE_PNG,
     targetMediaType: MediaType = IMAGE_PNG,
-    parameters: Parameters = emptyParameters()
+    parameters: Parameters = emptyParameters(),
+    assertWidth: Int = NormalImage.width,
+    assertHeight: Int = NormalImage.height,
+    assertWhitePixels: Int = NormalImage.whitePixels,
+    assertDarkPixels: Int = NormalImage.darkPixels
 ) {
-    test(data, dataClass, communicationParameters, mediaType, targetMediaType, parameters) {
+    test(
+        data,
+        dataClass,
+        communicationParameters,
+        mediaType,
+        targetMediaType,
+        parameters,
+        assertWidth,
+        assertHeight,
+        assertWhitePixels,
+        assertDarkPixels
+    ) {
         ImageTester.of(it.getInputStream())
     }
 }
@@ -41,9 +56,24 @@ internal fun pdfTest(
     communicationParameters: CommunicationParameters,
     mediaType: MediaType = IMAGE_PNG,
     targetMediaType: MediaType = IMAGE_PNG,
-    parameters: Parameters = emptyParameters()
+    parameters: Parameters = emptyParameters(),
+    assertWidth: Int = NormalImage.width,
+    assertHeight: Int = NormalImage.height,
+    assertWhitePixels: Int = NormalImage.whitePixels,
+    assertDarkPixels: Int = NormalImage.darkPixels
 ) {
-    test(data, dataClass, communicationParameters, mediaType, targetMediaType, parameters) { transformedData ->
+    test(
+        data,
+        dataClass,
+        communicationParameters,
+        mediaType,
+        targetMediaType,
+        parameters,
+        assertWidth,
+        assertHeight,
+        assertWhitePixels,
+        assertDarkPixels
+    ) { transformedData ->
         PDDocument.load(transformedData.getInputStream()).use { document ->
             withClue("Document has to contain <1> page") { document.pages.count shouldBe 1 }
 
@@ -67,17 +97,20 @@ private fun test(
     mediaType: MediaType,
     targetMediaType: MediaType,
     parameters: Parameters,
+    assertWith: Int,
+    assertHeight: Int,
+    assertWhitePixels: Int,
+    assertDarkPixels: Int,
     createImageTester: (Data) -> ImageTester
 ) {
     ImageMagickConverterTransformer(communicationParameters)
-        .transform(singleDataDescriptor(data, mediaType, emptyMetadata()), targetMediaType, parameters)
-        .let { transformedDataDescriptor ->
+        .transform(singleDataDescriptor(data, mediaType, emptyMetadata()), targetMediaType, parameters).let { transformedDataDescriptor ->
             transformedDataDescriptor.descriptors shouldHaveSize 1
 
             transformedDataDescriptor.descriptors[0].let {
                 it.data shouldBe instanceOf(dataClass)
                 createImageTester(it.data)
-                    .assert(NormalImage.width, NormalImage.height, NormalImage.whitePixels, NormalImage.darkPixels)
+                    .assert(assertWith, assertHeight, assertWhitePixels, assertDarkPixels)
             }
         }
 }

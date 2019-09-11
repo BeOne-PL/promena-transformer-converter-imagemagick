@@ -2,7 +2,11 @@ package pl.beone.promena.transformer.converter.imagemagick.applicationmodel
 
 object ImageMagickConverterParametersConstants {
 
-    const val EXAMPLE = "example"
+    const val WIDTH = "width"
 
-    const val EXAMPLE2 = "example2"
+    const val HEIGHT = "height"
+
+    const val IGNORE_ASPECT_RATIO = "ignoreAspectRatio"
+
+    const val ALLOW_ENLARGEMENT = "allowEnlargement"
 }

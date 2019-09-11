@@ -26,7 +26,7 @@ class ImageMagickConverterTransformer(private val internalCommunicationParameter
     private fun determineTransformer(): AbstractTransformer =
         when (internalCommunicationParameters.getId()) {
             "file" -> FileTransformer(internalCommunicationParameters.get("directory", File::class.java))
-            else -> MemoryTransformer()
+            else   -> MemoryTransformer()
         }
 
     override fun isSupported(dataDescriptor: DataDescriptor, targetMediaType: MediaType, parameters: Parameters) {

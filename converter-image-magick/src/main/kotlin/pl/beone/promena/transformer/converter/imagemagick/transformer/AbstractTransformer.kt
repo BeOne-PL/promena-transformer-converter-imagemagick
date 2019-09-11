@@ -16,6 +16,7 @@ import pl.beone.promena.transformer.contract.data.TransformedDataDescriptor
 import pl.beone.promena.transformer.contract.data.singleTransformedDataDescriptor
 import pl.beone.promena.transformer.contract.model.Data
 import pl.beone.promena.transformer.contract.model.Parameters
+import pl.beone.promena.transformer.converter.imagemagick.transformer.operation.ResizeOperation
 import pl.beone.promena.transformer.converter.imagemagick.transformer.operation.ToPdfOperation
 import java.io.InputStream
 import java.io.OutputStream
@@ -25,7 +26,7 @@ import java.util.concurrent.TimeUnit
 internal abstract class AbstractTransformer {
 
     companion object {
-        val additionalOperations = listOf(ToPdfOperation())
+        val additionalOperations = listOf(ToPdfOperation(), ResizeOperation())
     }
 
     protected abstract fun getOutputStream(): OutputStream

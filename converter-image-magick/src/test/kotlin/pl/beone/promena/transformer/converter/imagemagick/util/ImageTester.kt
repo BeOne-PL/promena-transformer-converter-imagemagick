@@ -31,7 +31,7 @@ internal class ImageTester private constructor(private val image: BufferedImage)
 
     private fun countColorPixels(matchColor: (color: Color) -> Boolean): Int =
         (0 until getHeight()).sumBy { h ->
-            (0 until getWidth()).count { w -> matchColor(Color(image.getRGB(h, w))) }
+            (0 until getWidth()).count { w -> matchColor(Color(image.getRGB(w, h))) }
         }
 }
 
