@@ -6,5 +6,5 @@ import org.springframework.context.annotation.PropertySource
 
 @Configuration
 @ComponentScan(basePackages = ["pl.beone.promena.transformer.converter.imagemagick.configuration"])
-@PropertySource("classpath:transformer-image-magick-converter.properties")
+@PropertySource("classpath:transformer-converter-image-magick.properties")
 class ImageMagickConverterTransformerModuleContext

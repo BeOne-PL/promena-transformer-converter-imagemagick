@@ -18,6 +18,9 @@
     <properties>
         <converter-image-magick.version>0.9.0-SNAPSHOT</converter-image-magick.version>
 
+        <promena-communication-memory-model.version>0.9.0-SNAPSHOT</promena-communication-memory-model.version>
+        <promena-communication-file-model.version>0.9.0-SNAPSHOT</promena-communication-file-model.version>
+
         <im4java.version>1.4.0</im4java.version>
 
         <pdfbox.version>2.0.16</pdfbox.version>
@@ -37,6 +40,17 @@
             <groupId>pl.beone.promena.transformer</groupId>
             <artifactId>converter-image-magick-application-model</artifactId>
             <version>${converter-image-magick.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>pl.beone.promena.communication.memory.model</groupId>
+            <artifactId>promena-communication-memory-model-internal</artifactId>
+            <version>${promena-communication-memory-model.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>pl.beone.promena.communication.file.model</groupId>
+            <artifactId>promena-communication-file-model-internal</artifactId>
+            <version>${promena-communication-file-model.version}</version>
         </dependency>
 
         <dependency>

@@ -3,6 +3,7 @@ package pl.beone.promena.transformer.converter.imagemagick
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import pl.beone.lib.junit5.extension.docker.external.DockerExtension
+import pl.beone.promena.communication.memory.model.internal.memoryCommunicationParameters
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.APPLICATION_PDF
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_PNG
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_TIFF
@@ -31,7 +32,7 @@ class ImageMagickConverterTransformerParametersTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.PNG).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_PNG,
             IMAGE_PNG,
             imageMagickConverterParameters(width = 50),
@@ -47,7 +48,7 @@ class ImageMagickConverterTransformerParametersTest {
         pdfTest(
             getResourceAsBytes(NormalImage.ResourcePath.TIFF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_TIFF,
             APPLICATION_PDF,
             imageMagickConverterParameters(width = 50),
@@ -63,7 +64,7 @@ class ImageMagickConverterTransformerParametersTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.PNG).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_PNG,
             IMAGE_PNG,
             imageMagickConverterParameters(height = 75, width = 50),
@@ -79,7 +80,7 @@ class ImageMagickConverterTransformerParametersTest {
         pdfTest(
             getResourceAsBytes(NormalImage.ResourcePath.TIFF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_TIFF,
             APPLICATION_PDF,
             imageMagickConverterParameters(height = 75, width = 50),
@@ -91,13 +92,12 @@ class ImageMagickConverterTransformerParametersTest {
     }
 
     // ***
-
     @Test
     fun transform_toPng_widthAndIgnoreAspectRatio_shouldBreakAspectRatio() {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.PNG).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_PNG,
             IMAGE_PNG,
             imageMagickConverterParameters(width = 50, ignoreAspectRatio = true),
@@ -113,7 +113,7 @@ class ImageMagickConverterTransformerParametersTest {
         pdfTest(
             getResourceAsBytes(NormalImage.ResourcePath.TIFF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_TIFF,
             APPLICATION_PDF,
             imageMagickConverterParameters(width = 50, ignoreAspectRatio = true),
@@ -129,7 +129,7 @@ class ImageMagickConverterTransformerParametersTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.PNG).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_PNG,
             IMAGE_PNG,
             imageMagickConverterParameters(height = 50, ignoreAspectRatio = true, allowEnlargement = true),
@@ -145,7 +145,7 @@ class ImageMagickConverterTransformerParametersTest {
         pdfTest(
             getResourceAsBytes(NormalImage.ResourcePath.TIFF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_TIFF,
             APPLICATION_PDF,
             imageMagickConverterParameters(height = 50, ignoreAspectRatio = true, allowEnlargement = true),
@@ -163,7 +163,7 @@ class ImageMagickConverterTransformerParametersTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.PNG).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_PNG,
             IMAGE_PNG,
             imageMagickConverterParameters(width = 200, allowEnlargement = false),
@@ -179,7 +179,7 @@ class ImageMagickConverterTransformerParametersTest {
         pdfTest(
             getResourceAsBytes(NormalImage.ResourcePath.TIFF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_TIFF,
             APPLICATION_PDF,
             imageMagickConverterParameters(width = 200, allowEnlargement = false),
@@ -195,7 +195,7 @@ class ImageMagickConverterTransformerParametersTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.PNG).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_PNG,
             IMAGE_PNG,
             imageMagickConverterParameters(width = 200, allowEnlargement = true),
@@ -211,7 +211,7 @@ class ImageMagickConverterTransformerParametersTest {
         pdfTest(
             getResourceAsBytes(NormalImage.ResourcePath.TIFF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_TIFF,
             APPLICATION_PDF,
             imageMagickConverterParameters(width = 200, allowEnlargement = true),
@@ -229,7 +229,7 @@ class ImageMagickConverterTransformerParametersTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.PNG).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_PNG,
             IMAGE_PNG,
             imageMagickConverterParameters(width = 200, ignoreAspectRatio = true, allowEnlargement = true),
@@ -245,7 +245,7 @@ class ImageMagickConverterTransformerParametersTest {
         pdfTest(
             getResourceAsBytes(NormalImage.ResourcePath.TIFF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_TIFF,
             APPLICATION_PDF,
             imageMagickConverterParameters(width = 200, ignoreAspectRatio = true, allowEnlargement = true),

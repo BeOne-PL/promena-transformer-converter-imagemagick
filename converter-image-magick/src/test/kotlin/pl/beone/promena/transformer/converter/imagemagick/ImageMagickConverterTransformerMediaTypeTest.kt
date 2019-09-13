@@ -3,6 +3,7 @@ package pl.beone.promena.transformer.converter.imagemagick
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import pl.beone.lib.junit5.extension.docker.external.DockerExtension
+import pl.beone.promena.communication.memory.model.internal.memoryCommunicationParameters
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.APPLICATION_PDF
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_GIF
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_JPEG
@@ -21,7 +22,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.PDF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             APPLICATION_PDF,
             IMAGE_PNG
         )
@@ -32,7 +33,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.PDF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             APPLICATION_PDF,
             IMAGE_JPEG
         )
@@ -43,7 +44,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.PDF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             APPLICATION_PDF,
             IMAGE_GIF
         )
@@ -54,7 +55,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.PDF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             APPLICATION_PDF,
             IMAGE_TIFF
         )
@@ -67,7 +68,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.JPEG).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_JPEG,
             IMAGE_PNG
         )
@@ -78,7 +79,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.JPEG).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_JPEG,
             IMAGE_JPEG
         )
@@ -89,7 +90,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.JPEG).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_JPEG,
             IMAGE_GIF
         )
@@ -100,7 +101,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.JPEG).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_JPEG,
             IMAGE_TIFF
         )
@@ -113,7 +114,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.GIF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_GIF,
             IMAGE_PNG
         )
@@ -124,7 +125,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.GIF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_GIF,
             IMAGE_JPEG
         )
@@ -135,7 +136,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.GIF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_GIF,
             IMAGE_GIF
         )
@@ -146,7 +147,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.GIF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_GIF,
             IMAGE_TIFF
         )
@@ -159,7 +160,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.PNG).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_PNG,
             IMAGE_PNG
         )
@@ -170,7 +171,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.PNG).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_PNG,
             IMAGE_JPEG
         )
@@ -181,7 +182,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.PNG).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_PNG,
             IMAGE_GIF
         )
@@ -192,7 +193,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.PNG).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_PNG,
             IMAGE_TIFF
         )
@@ -205,7 +206,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.TIFF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_TIFF,
             IMAGE_PNG
         )
@@ -216,7 +217,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.TIFF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_TIFF,
             IMAGE_JPEG
         )
@@ -227,7 +228,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.TIFF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_TIFF,
             IMAGE_GIF
         )
@@ -238,7 +239,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(
             getResourceAsBytes(NormalImage.ResourcePath.TIFF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_TIFF,
             IMAGE_TIFF
         )
@@ -251,7 +252,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         pdfTest(
             getResourceAsBytes(NormalImage.ResourcePath.TIFF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_PNG,
             APPLICATION_PDF
         )
@@ -262,7 +263,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         pdfTest(
             getResourceAsBytes(NormalImage.ResourcePath.TIFF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_JPEG,
             APPLICATION_PDF
         )
@@ -273,7 +274,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         pdfTest(
             getResourceAsBytes(NormalImage.ResourcePath.TIFF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_GIF,
             APPLICATION_PDF
         )
@@ -284,7 +285,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         pdfTest(
             getResourceAsBytes(NormalImage.ResourcePath.TIFF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             IMAGE_TIFF,
             APPLICATION_PDF
         )
@@ -295,7 +296,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
         pdfTest(
             getResourceAsBytes(NormalImage.ResourcePath.PDF).toMemoryData(),
             MemoryData::class,
-            memoryCommunicationParameters,
+            memoryCommunicationParameters(),
             APPLICATION_PDF,
             APPLICATION_PDF
         )

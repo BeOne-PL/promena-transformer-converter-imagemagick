@@ -15,12 +15,9 @@ import pl.beone.promena.transformer.contract.model.Parameters
 import pl.beone.promena.transformer.converter.imagemagick.model.NormalImage
 import pl.beone.promena.transformer.converter.imagemagick.util.ImageTester
 import pl.beone.promena.transformer.converter.imagemagick.util.assert
-import pl.beone.promena.transformer.internal.communication.communicationParameters
 import pl.beone.promena.transformer.internal.model.metadata.emptyMetadata
 import pl.beone.promena.transformer.internal.model.parameters.emptyParameters
 import kotlin.reflect.KClass
-
-internal val memoryCommunicationParameters = communicationParameters("memory")
 
 internal fun imageTest(
     data: Data,
