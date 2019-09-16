@@ -16,7 +16,7 @@ import pl.beone.promena.transformer.internal.model.data.toMemoryData
 @ExtendWith(DockerExtension::class)
 class ImageMagickConverterTransformerParametersTest {
 
-//    Difficult to test. It would have to be a very big file
+//    Difficult to test. ImageMagick ends transformation in no time (and the library starts waiting for the result after some time). It would have to be a very big file.
 //    @Test
 //    fun transform_timeout_shouldThrowTimeoutException() {
 //        ImageMagickConverterTransformer(memoryCommunicationParameters)

@@ -10,6 +10,9 @@ import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstant
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_TIFF
 import pl.beone.promena.transformer.contract.model.Parameters
 
+/**
+ * This operation ensures images converted to PDF will retain their original size
+ */
 internal class ToPdfOperation : AbstractOperation() {
 
     override fun create(mediaType: MediaType, targetMediaType: MediaType, parameters: Parameters): Operation =
