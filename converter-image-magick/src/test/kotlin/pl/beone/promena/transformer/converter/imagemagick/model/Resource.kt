@@ -1,8 +1,8 @@
 package pl.beone.promena.transformer.converter.imagemagick.model
 
-object NormalImage {
+object Resource {
 
-    object ResourcePath {
+    object Path {
         const val PDF = "/image/normal.pdf"
         const val JPEG = "/image/normal.jpeg"
         const val GIF = "/image/normal.gif"

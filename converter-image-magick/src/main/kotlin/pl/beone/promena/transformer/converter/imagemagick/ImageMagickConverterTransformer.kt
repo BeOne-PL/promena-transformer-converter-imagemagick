@@ -12,7 +12,9 @@ import pl.beone.promena.transformer.converter.imagemagick.transformer.AbstractTr
 import pl.beone.promena.transformer.converter.imagemagick.transformer.FileTransformer
 import pl.beone.promena.transformer.converter.imagemagick.transformer.MemoryTransformer
 
-class ImageMagickConverterTransformer(private val internalCommunicationParameters: CommunicationParameters) : Transformer {
+class ImageMagickConverterTransformer(
+    private val internalCommunicationParameters: CommunicationParameters
+) : Transformer {
 
     companion object {
         private val supporter = Supporter()

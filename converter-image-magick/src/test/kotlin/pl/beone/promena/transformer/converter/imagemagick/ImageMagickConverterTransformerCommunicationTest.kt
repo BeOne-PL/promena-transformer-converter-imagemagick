@@ -5,7 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import pl.beone.lib.junit5.extension.docker.external.DockerExtension
 import pl.beone.promena.communication.file.model.internal.fileCommunicationParameters
 import pl.beone.promena.communication.memory.model.internal.memoryCommunicationParameters
-import pl.beone.promena.transformer.converter.imagemagick.model.NormalImage
+import pl.beone.promena.transformer.converter.imagemagick.model.Resource
 import pl.beone.promena.transformer.converter.imagemagick.util.getResourceAsBytes
 import pl.beone.promena.transformer.internal.model.data.FileData
 import pl.beone.promena.transformer.internal.model.data.MemoryData
@@ -18,7 +18,7 @@ class ImageMagickConverterTransformerCommunicationTest {
     @Test
     fun transform_memoryData() {
         imageTest(
-            getResourceAsBytes(NormalImage.ResourcePath.PNG).toMemoryData(),
+            getResourceAsBytes(Resource.Path.PNG).toMemoryData(),
             MemoryData::class,
             memoryCommunicationParameters()
         )
@@ -29,7 +29,7 @@ class ImageMagickConverterTransformerCommunicationTest {
         val directory = createTempDir()
 
         imageTest(
-            getResourceAsBytes(NormalImage.ResourcePath.PNG).inputStream().toFileData(directory),
+            getResourceAsBytes(Resource.Path.PNG).inputStream().toFileData(directory),
             FileData::class,
             fileCommunicationParameters(directory)
         )

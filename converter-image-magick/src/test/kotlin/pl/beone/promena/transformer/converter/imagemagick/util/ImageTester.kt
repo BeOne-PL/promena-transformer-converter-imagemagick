@@ -1,12 +1,15 @@
 package pl.beone.promena.transformer.converter.imagemagick.util
 
+import io.kotlintest.matchers.withClue
 import io.kotlintest.shouldBe
 import java.awt.Color
 import java.awt.image.BufferedImage
 import java.io.InputStream
 import javax.imageio.ImageIO
 
-internal class ImageTester private constructor(private val image: BufferedImage) {
+internal class ImageTester private constructor(
+    private val image: BufferedImage
+) {
 
     companion object {
         fun of(inputStream: InputStream): ImageTester =
@@ -36,10 +39,10 @@ internal class ImageTester private constructor(private val image: BufferedImage)
 }
 
 internal fun ImageTester.assert(width: Int, height: Int, lightPixels: Int, darkPixels: Int): ImageTester {
-    getWidth() shouldBe width
-    getHeight() shouldBe height
-    countLightPixels() shouldBe lightPixels
-    countDarkPixels() shouldBe darkPixels
+    withClue("Image width should be <$width>") { getWidth() shouldBe width }
+    withClue("Image height should be <$height>") { getHeight() shouldBe height }
+    withClue("Image should contain <$lightPixels> light pixels") { countLightPixels() shouldBe lightPixels }
+    withClue("Image should contain <$darkPixels> dark pixels") { countDarkPixels() shouldBe darkPixels }
 
     return this
 }
