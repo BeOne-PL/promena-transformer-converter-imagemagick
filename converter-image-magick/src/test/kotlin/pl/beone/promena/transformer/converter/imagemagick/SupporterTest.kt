@@ -19,6 +19,10 @@ internal class SupporterTest {
 
     companion object {
         private val transformer = ImageMagickConverterTransformer(mockk())
+
+        private const val exceptionMessage =
+            "Supported transformations: <(application/pdf, UTF-8) -> (image/png, UTF-8)>, <(application/pdf, UTF-8) -> (image/jpeg, UTF-8)>, <(application/pdf, UTF-8) -> (image/gif, UTF-8)>, <(application/pdf, UTF-8) -> (image/tiff, UTF-8)>, <(application/pdf, UTF-8) -> (application/pdf, UTF-8)>, <(image/jpeg, UTF-8) -> (image/png, UTF-8)>, <(image/jpeg, UTF-8) -> (image/jpeg, UTF-8)>, <(image/jpeg, UTF-8) -> (image/gif, UTF-8)>, <(image/jpeg, UTF-8) -> (image/tiff, UTF-8)>, <(image/jpeg, UTF-8) -> (application/pdf, UTF-8)>, <(image/gif, UTF-8) -> (image/png, UTF-8)>, <(image/gif, UTF-8) -> (image/jpeg, UTF-8)>, <(image/gif, UTF-8) -> (image/gif, UTF-8)>, <(image/gif, UTF-8) -> (image/tiff, UTF-8)>, <(image/gif, UTF-8) -> (application/pdf, UTF-8)>, <(image/png, UTF-8) -> (image/png, UTF-8)>, <(image/png, UTF-8) -> (image/jpeg, UTF-8)>, <(image/png, UTF-8) -> (image/gif, UTF-8)>, <(image/png, UTF-8) -> (image/tiff, UTF-8)>, <(image/png, UTF-8) -> (application/pdf, UTF-8)>, <(image/tiff, UTF-8) -> (image/png, UTF-8)>, <(image/tiff, UTF-8) -> (image/jpeg, UTF-8)>, <(image/tiff, UTF-8) -> (image/gif, UTF-8)>, <(image/tiff, UTF-8) -> (image/tiff, UTF-8)>, <(image/tiff, UTF-8) -> (application/pdf, UTF-8)>"
+
     }
 
     @Test
@@ -33,24 +37,35 @@ internal class SupporterTest {
     }
 
     @Test
-    fun isSupported_targetMediaTypeHasNotSupportedCharset_shouldThrowTransformationNotSupportedException() {
+    fun isSupported_mediaTypeHasNotSupportedCharset_shouldThrowTransformationNotSupportedException() {
         shouldThrow<TransformationNotSupportedException> {
             transformer.isSupported(
                 singleDataDescriptor(noData(), MediaType.Companion.of(APPLICATION_PDF.mimeType, Charsets.ISO_8859_1), emptyMetadata()),
                 IMAGE_PNG,
                 emptyParameters()
             )
-        }.message shouldBe "Supported transformations: <(application/pdf, UTF-8) -> (image/png, UTF-8)>, <(application/pdf, UTF-8) -> (image/jpeg, UTF-8)>, <(application/pdf, UTF-8) -> (image/gif, UTF-8)>, <(application/pdf, UTF-8) -> (image/tiff, UTF-8)>, <(application/pdf, UTF-8) -> (application/pdf, UTF-8)>, <(image/jpeg, UTF-8) -> (image/png, UTF-8)>, <(image/jpeg, UTF-8) -> (image/jpeg, UTF-8)>, <(image/jpeg, UTF-8) -> (image/gif, UTF-8)>, <(image/jpeg, UTF-8) -> (image/tiff, UTF-8)>, <(image/jpeg, UTF-8) -> (application/pdf, UTF-8)>, <(image/gif, UTF-8) -> (image/png, UTF-8)>, <(image/gif, UTF-8) -> (image/jpeg, UTF-8)>, <(image/gif, UTF-8) -> (image/gif, UTF-8)>, <(image/gif, UTF-8) -> (image/tiff, UTF-8)>, <(image/gif, UTF-8) -> (application/pdf, UTF-8)>, <(image/png, UTF-8) -> (image/png, UTF-8)>, <(image/png, UTF-8) -> (image/jpeg, UTF-8)>, <(image/png, UTF-8) -> (image/gif, UTF-8)>, <(image/png, UTF-8) -> (image/tiff, UTF-8)>, <(image/png, UTF-8) -> (application/pdf, UTF-8)>, <(image/tiff, UTF-8) -> (image/png, UTF-8)>, <(image/tiff, UTF-8) -> (image/jpeg, UTF-8)>, <(image/tiff, UTF-8) -> (image/gif, UTF-8)>, <(image/tiff, UTF-8) -> (image/tiff, UTF-8)>, <(image/tiff, UTF-8) -> (application/pdf, UTF-8)>"
+        }.message shouldBe exceptionMessage
     }
 
     @Test
-    fun isSupported_targetMediaTypeIsNotSupported_shouldThrowTransformationNotSupportedException() {
+    fun isSupported_mediaTypeIsNotSupported_shouldThrowTransformationNotSupportedException() {
         shouldThrow<TransformationNotSupportedException> {
             transformer.isSupported(
                 singleDataDescriptor(noData(), TEXT_XML, emptyMetadata()),
                 IMAGE_PNG,
                 emptyParameters()
             )
-        }.message shouldBe "Supported transformations: <(application/pdf, UTF-8) -> (image/png, UTF-8)>, <(application/pdf, UTF-8) -> (image/jpeg, UTF-8)>, <(application/pdf, UTF-8) -> (image/gif, UTF-8)>, <(application/pdf, UTF-8) -> (image/tiff, UTF-8)>, <(application/pdf, UTF-8) -> (application/pdf, UTF-8)>, <(image/jpeg, UTF-8) -> (image/png, UTF-8)>, <(image/jpeg, UTF-8) -> (image/jpeg, UTF-8)>, <(image/jpeg, UTF-8) -> (image/gif, UTF-8)>, <(image/jpeg, UTF-8) -> (image/tiff, UTF-8)>, <(image/jpeg, UTF-8) -> (application/pdf, UTF-8)>, <(image/gif, UTF-8) -> (image/png, UTF-8)>, <(image/gif, UTF-8) -> (image/jpeg, UTF-8)>, <(image/gif, UTF-8) -> (image/gif, UTF-8)>, <(image/gif, UTF-8) -> (image/tiff, UTF-8)>, <(image/gif, UTF-8) -> (application/pdf, UTF-8)>, <(image/png, UTF-8) -> (image/png, UTF-8)>, <(image/png, UTF-8) -> (image/jpeg, UTF-8)>, <(image/png, UTF-8) -> (image/gif, UTF-8)>, <(image/png, UTF-8) -> (image/tiff, UTF-8)>, <(image/png, UTF-8) -> (application/pdf, UTF-8)>, <(image/tiff, UTF-8) -> (image/png, UTF-8)>, <(image/tiff, UTF-8) -> (image/jpeg, UTF-8)>, <(image/tiff, UTF-8) -> (image/gif, UTF-8)>, <(image/tiff, UTF-8) -> (image/tiff, UTF-8)>, <(image/tiff, UTF-8) -> (application/pdf, UTF-8)>"
+        }.message shouldBe exceptionMessage
+    }
+
+    @Test
+    fun isSupported_targetMediaTypeIsNotSupported_shouldThrowTransformationNotSupportedException() {
+        shouldThrow<TransformationNotSupportedException> {
+            transformer.isSupported(
+                singleDataDescriptor(noData(), IMAGE_PNG, emptyMetadata()),
+                TEXT_XML,
+                emptyParameters()
+            )
+        }.message shouldBe exceptionMessage
     }
 }
