@@ -62,12 +62,12 @@ internal abstract class AbstractTransformer {
 
     private fun determineExtension(mediaType: MediaType): String =
         when (mediaType) {
-            IMAGE_PNG       -> "png"
-            IMAGE_JPEG      -> "jpeg"
-            IMAGE_GIF       -> "gif"
-            IMAGE_TIFF      -> "tiff"
+            IMAGE_PNG -> "png"
+            IMAGE_JPEG -> "jpeg"
+            IMAGE_GIF -> "gif"
+            IMAGE_TIFF -> "tiff"
             APPLICATION_PDF -> "pdf"
-            else            -> throw IllegalArgumentException("Couldn't determine extension for <$mediaType>")
+            else -> throw IllegalArgumentException("Couldn't determine extension for <$mediaType>")
         }
 
     private fun createProcessTask(inputStream: InputStream, outputStream: OutputStream, imOperation: IMOperation): ProcessTask =

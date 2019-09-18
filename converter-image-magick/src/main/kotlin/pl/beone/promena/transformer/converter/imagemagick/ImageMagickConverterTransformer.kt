@@ -28,7 +28,7 @@ class ImageMagickConverterTransformer(
     private fun determineTransformer(): AbstractTransformer =
         when (internalCommunicationParameters.getId()) {
             FileCommunicationParameters.ID -> FileTransformer((internalCommunicationParameters as FileCommunicationParameters).getDirectory())
-            else                           -> MemoryTransformer()
+            else -> MemoryTransformer()
         }
 
     override fun isSupported(dataDescriptor: DataDescriptor, targetMediaType: MediaType, parameters: Parameters) {

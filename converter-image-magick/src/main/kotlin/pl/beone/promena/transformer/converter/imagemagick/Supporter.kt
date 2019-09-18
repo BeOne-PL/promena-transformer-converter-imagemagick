@@ -57,5 +57,8 @@ internal class Supporter {
         !supportedTransformations.contains(mediaType to targetMediaType)
 
     private fun createSupportedTransformationsString(): String =
-        supportedTransformations.joinToString(", ") { (from, to) -> "(${from} -> ${to})" }
+        supportedTransformations.joinToString(", ") { (from, to) -> "<${from.createDescription()} -> ${to.createDescription()}>" }
+
+    private fun MediaType.createDescription(): String =
+        "(${mimeType}, ${charset.name()})"
 }
