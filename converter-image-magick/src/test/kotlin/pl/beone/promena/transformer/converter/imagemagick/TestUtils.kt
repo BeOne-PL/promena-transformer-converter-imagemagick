@@ -23,7 +23,7 @@ import pl.beone.promena.transformer.internal.model.parameters.emptyParameters
 import kotlin.reflect.KClass
 
 internal fun memoryImageTest(
-    data: ByteArray,
+    byteArray: ByteArray,
     mediaType: MediaType = IMAGE_PNG,
     targetMediaType: MediaType = IMAGE_PNG,
     parameters: Parameters = emptyParameters(),
@@ -33,7 +33,7 @@ internal fun memoryImageTest(
     assertDarkPixels: Int = Resource.darkPixels
 ) {
     imageTest(
-        data.toMemoryData(),
+        byteArray.toMemoryData(),
         MemoryData::class,
         memoryCommunicationParameters(),
         mediaType,
@@ -47,7 +47,7 @@ internal fun memoryImageTest(
 }
 
 internal fun memoryPdfTest(
-    data: ByteArray,
+    byteArray: ByteArray,
     mediaType: MediaType = IMAGE_PNG,
     targetMediaType: MediaType = IMAGE_PNG,
     parameters: Parameters = emptyParameters(),
@@ -57,7 +57,7 @@ internal fun memoryPdfTest(
     assertDarkPixels: Int = Resource.darkPixels
 ) {
     pdfTest(
-        data.toMemoryData(),
+        byteArray.toMemoryData(),
         MemoryData::class,
         memoryCommunicationParameters(),
         mediaType,
