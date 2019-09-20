@@ -1,4 +1,4 @@
-RUN yum install -y ImageMagick-6.7.8.9-16.el7_6
+RUN yum install -y ImageMagick-6.*
 
 ENV MAGICK_MEMORY_LIMIT 5GB
 ENV MAGICK_THREAD_LIMIT 2
