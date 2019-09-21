@@ -1,4 +1,4 @@
-RUN yum install -y ImageMagick-6.*
+RUN yum install -y ImageMagick-6.* ghostscript
 
 ENV MAGICK_MEMORY_LIMIT 5GB
 ENV MAGICK_THREAD_LIMIT 2
