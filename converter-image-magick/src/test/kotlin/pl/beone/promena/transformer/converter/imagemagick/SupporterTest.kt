@@ -10,6 +10,7 @@ import pl.beone.promena.transformer.applicationmodel.mediatype.MediaType
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.APPLICATION_PDF
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_PNG
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.TEXT_XML
+import pl.beone.promena.transformer.applicationmodel.mediatype.mediaType
 import pl.beone.promena.transformer.contract.data.singleDataDescriptor
 import pl.beone.promena.transformer.internal.model.data.noData
 import pl.beone.promena.transformer.internal.model.metadata.emptyMetadata
@@ -19,10 +20,6 @@ internal class SupporterTest {
 
     companion object {
         private val transformer = ImageMagickConverterTransformer(mockk())
-
-        private const val exceptionMessage =
-            "Supported transformations: <(application/pdf, UTF-8) -> (image/png, UTF-8)>, <(application/pdf, UTF-8) -> (image/jpeg, UTF-8)>, <(application/pdf, UTF-8) -> (image/gif, UTF-8)>, <(application/pdf, UTF-8) -> (image/tiff, UTF-8)>, <(application/pdf, UTF-8) -> (application/pdf, UTF-8)>, <(image/jpeg, UTF-8) -> (image/png, UTF-8)>, <(image/jpeg, UTF-8) -> (image/jpeg, UTF-8)>, <(image/jpeg, UTF-8) -> (image/gif, UTF-8)>, <(image/jpeg, UTF-8) -> (image/tiff, UTF-8)>, <(image/jpeg, UTF-8) -> (application/pdf, UTF-8)>, <(image/gif, UTF-8) -> (image/png, UTF-8)>, <(image/gif, UTF-8) -> (image/jpeg, UTF-8)>, <(image/gif, UTF-8) -> (image/gif, UTF-8)>, <(image/gif, UTF-8) -> (image/tiff, UTF-8)>, <(image/gif, UTF-8) -> (application/pdf, UTF-8)>, <(image/png, UTF-8) -> (image/png, UTF-8)>, <(image/png, UTF-8) -> (image/jpeg, UTF-8)>, <(image/png, UTF-8) -> (image/gif, UTF-8)>, <(image/png, UTF-8) -> (image/tiff, UTF-8)>, <(image/png, UTF-8) -> (application/pdf, UTF-8)>, <(image/tiff, UTF-8) -> (image/png, UTF-8)>, <(image/tiff, UTF-8) -> (image/jpeg, UTF-8)>, <(image/tiff, UTF-8) -> (image/gif, UTF-8)>, <(image/tiff, UTF-8) -> (image/tiff, UTF-8)>, <(image/tiff, UTF-8) -> (application/pdf, UTF-8)>"
-
     }
 
     @Test
@@ -40,11 +37,11 @@ internal class SupporterTest {
     fun isSupported_mediaTypeHasNotSupportedCharset_shouldThrowTransformationNotSupportedException() {
         shouldThrow<TransformationNotSupportedException> {
             transformer.isSupported(
-                singleDataDescriptor(noData(), MediaType.Companion.of(APPLICATION_PDF.mimeType, Charsets.ISO_8859_1), emptyMetadata()),
+                singleDataDescriptor(noData(), mediaType(APPLICATION_PDF.mimeType, Charsets.ISO_8859_1), emptyMetadata()),
                 IMAGE_PNG,
                 emptyParameters()
             )
-        }.message shouldBe exceptionMessage
+        }.message shouldBe "Transformation (application/pdf, ISO-8859-1) -> (image/png, UTF-8) isn't supported"
     }
 
     @Test
@@ -55,7 +52,7 @@ internal class SupporterTest {
                 IMAGE_PNG,
                 emptyParameters()
             )
-        }.message shouldBe exceptionMessage
+        }.message shouldBe "Transformation (text/xml, UTF-8) -> (image/png, UTF-8) isn't supported"
     }
 
     @Test
@@ -66,6 +63,6 @@ internal class SupporterTest {
                 TEXT_XML,
                 emptyParameters()
             )
-        }.message shouldBe exceptionMessage
+        }.message shouldBe "Transformation (image/png, UTF-8) -> (text/xml, UTF-8) isn't supported"
     }
 }
