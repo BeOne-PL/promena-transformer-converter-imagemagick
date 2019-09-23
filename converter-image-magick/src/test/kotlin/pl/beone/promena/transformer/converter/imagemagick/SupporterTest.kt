@@ -6,7 +6,6 @@ import io.kotlintest.shouldThrow
 import io.mockk.mockk
 import org.junit.jupiter.api.Test
 import pl.beone.promena.transformer.applicationmodel.exception.transformer.TransformationNotSupportedException
-import pl.beone.promena.transformer.applicationmodel.mediatype.MediaType
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.APPLICATION_PDF
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_PNG
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.TEXT_XML

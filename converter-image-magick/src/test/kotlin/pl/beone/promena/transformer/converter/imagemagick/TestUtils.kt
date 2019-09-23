@@ -27,10 +27,10 @@ internal fun memoryImageTest(
     mediaType: MediaType = IMAGE_PNG,
     targetMediaType: MediaType = IMAGE_PNG,
     parameters: Parameters = emptyParameters(),
-    assertWidth: Int = Resource.width,
-    assertHeight: Int = Resource.height,
-    assertWhitePixels: Int = Resource.whitePixels,
-    assertDarkPixels: Int = Resource.darkPixels
+    assertWidth: Int = Resource.MediaType.width,
+    assertHeight: Int = Resource.MediaType.height,
+    assertWhitePixels: Int = Resource.MediaType.whitePixels,
+    assertDarkPixels: Int = Resource.MediaType.darkPixels
 ) {
     imageTest(
         byteArray.toMemoryData(),
@@ -51,10 +51,10 @@ internal fun memoryPdfTest(
     mediaType: MediaType = IMAGE_PNG,
     targetMediaType: MediaType = IMAGE_PNG,
     parameters: Parameters = emptyParameters(),
-    assertWidth: Int = Resource.width,
-    assertHeight: Int = Resource.height,
-    assertWhitePixels: Int = Resource.whitePixels,
-    assertDarkPixels: Int = Resource.darkPixels
+    assertWidth: Int = Resource.MediaType.width,
+    assertHeight: Int = Resource.MediaType.height,
+    assertWhitePixels: Int = Resource.MediaType.whitePixels,
+    assertDarkPixels: Int = Resource.MediaType.darkPixels
 ) {
     pdfTest(
         byteArray.toMemoryData(),
@@ -77,10 +77,10 @@ internal fun imageTest(
     mediaType: MediaType = IMAGE_PNG,
     targetMediaType: MediaType = IMAGE_PNG,
     parameters: Parameters = emptyParameters(),
-    assertWidth: Int = Resource.width,
-    assertHeight: Int = Resource.height,
-    assertWhitePixels: Int = Resource.whitePixels,
-    assertDarkPixels: Int = Resource.darkPixels
+    assertWidth: Int = Resource.MediaType.width,
+    assertHeight: Int = Resource.MediaType.height,
+    assertWhitePixels: Int = Resource.MediaType.whitePixels,
+    assertDarkPixels: Int = Resource.MediaType.darkPixels
 ) {
     test(
         data,
@@ -105,10 +105,10 @@ internal fun pdfTest(
     mediaType: MediaType = IMAGE_PNG,
     targetMediaType: MediaType = IMAGE_PNG,
     parameters: Parameters = emptyParameters(),
-    assertWidth: Int = Resource.width,
-    assertHeight: Int = Resource.height,
-    assertWhitePixels: Int = Resource.whitePixels,
-    assertDarkPixels: Int = Resource.darkPixels
+    assertWidth: Int = Resource.MediaType.width,
+    assertHeight: Int = Resource.MediaType.height,
+    assertWhitePixels: Int = Resource.MediaType.whitePixels,
+    assertDarkPixels: Int = Resource.MediaType.darkPixels
 ) {
     test(
         data,

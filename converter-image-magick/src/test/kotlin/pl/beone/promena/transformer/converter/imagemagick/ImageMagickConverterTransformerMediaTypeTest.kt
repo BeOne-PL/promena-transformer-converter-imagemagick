@@ -17,7 +17,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_pdfToPng() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.PDF),
+            getResourceAsBytes(Resource.MediaType.Path.PDF),
             APPLICATION_PDF,
             IMAGE_PNG
         )
@@ -26,7 +26,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_pdfToJpeg() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.PDF),
+            getResourceAsBytes(Resource.MediaType.Path.PDF),
             APPLICATION_PDF,
             IMAGE_JPEG
         )
@@ -35,7 +35,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_pdfToGif() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.PDF),
+            getResourceAsBytes(Resource.MediaType.Path.PDF),
             APPLICATION_PDF,
             IMAGE_GIF
         )
@@ -44,7 +44,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_pdfToTiff() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.PDF),
+            getResourceAsBytes(Resource.MediaType.Path.PDF),
             APPLICATION_PDF,
             IMAGE_TIFF
         )
@@ -55,7 +55,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_jpegToPng() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.JPEG),
+            getResourceAsBytes(Resource.MediaType.Path.JPEG),
             IMAGE_JPEG,
             IMAGE_PNG
         )
@@ -64,7 +64,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_jpegToJpeg() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.JPEG),
+            getResourceAsBytes(Resource.MediaType.Path.JPEG),
             IMAGE_JPEG,
             IMAGE_JPEG
         )
@@ -73,7 +73,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_jpegToGif() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.JPEG),
+            getResourceAsBytes(Resource.MediaType.Path.JPEG),
             IMAGE_JPEG,
             IMAGE_GIF
         )
@@ -82,7 +82,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_jpegToTiff() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.JPEG),
+            getResourceAsBytes(Resource.MediaType.Path.JPEG),
             IMAGE_JPEG,
             IMAGE_TIFF
         )
@@ -93,7 +93,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_gifToPng() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.GIF),
+            getResourceAsBytes(Resource.MediaType.Path.GIF),
             IMAGE_GIF,
             IMAGE_PNG
         )
@@ -102,7 +102,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_gifToJpeg() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.GIF),
+            getResourceAsBytes(Resource.MediaType.Path.GIF),
             IMAGE_GIF,
             IMAGE_JPEG
         )
@@ -111,7 +111,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_gifToGif() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.GIF),
+            getResourceAsBytes(Resource.MediaType.Path.GIF),
             IMAGE_GIF,
             IMAGE_GIF
         )
@@ -120,7 +120,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_gifToTiff() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.GIF),
+            getResourceAsBytes(Resource.MediaType.Path.GIF),
             IMAGE_GIF,
             IMAGE_TIFF
         )
@@ -131,7 +131,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_pngToPng() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.PNG),
+            getResourceAsBytes(Resource.MediaType.Path.PNG),
             IMAGE_PNG,
             IMAGE_PNG
         )
@@ -140,7 +140,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_pngToJpeg() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.PNG),
+            getResourceAsBytes(Resource.MediaType.Path.PNG),
             IMAGE_PNG,
             IMAGE_JPEG
         )
@@ -149,7 +149,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_pngToGif() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.PNG),
+            getResourceAsBytes(Resource.MediaType.Path.PNG),
             IMAGE_PNG,
             IMAGE_GIF
         )
@@ -158,7 +158,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_pngToTiff() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.PNG),
+            getResourceAsBytes(Resource.MediaType.Path.PNG),
             IMAGE_PNG,
             IMAGE_TIFF
         )
@@ -169,7 +169,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_tiffToPng() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.TIFF),
+            getResourceAsBytes(Resource.MediaType.Path.TIFF),
             IMAGE_TIFF,
             IMAGE_PNG
         )
@@ -178,7 +178,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_tiffToJpeg() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.TIFF),
+            getResourceAsBytes(Resource.MediaType.Path.TIFF),
             IMAGE_TIFF,
             IMAGE_JPEG
         )
@@ -187,7 +187,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_tiffToGif() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.TIFF),
+            getResourceAsBytes(Resource.MediaType.Path.TIFF),
             IMAGE_TIFF,
             IMAGE_GIF
         )
@@ -196,7 +196,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_tiffToTiff() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.TIFF),
+            getResourceAsBytes(Resource.MediaType.Path.TIFF),
             IMAGE_TIFF,
             IMAGE_TIFF
         )
@@ -207,7 +207,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_pngToPdf() {
         memoryPdfTest(
-            getResourceAsBytes(Resource.Path.TIFF),
+            getResourceAsBytes(Resource.MediaType.Path.TIFF),
             IMAGE_PNG,
             APPLICATION_PDF
         )
@@ -216,7 +216,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_jpegToPdf() {
         memoryPdfTest(
-            getResourceAsBytes(Resource.Path.TIFF),
+            getResourceAsBytes(Resource.MediaType.Path.TIFF),
             IMAGE_JPEG,
             APPLICATION_PDF
         )
@@ -225,7 +225,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_gifToPdf() {
         memoryPdfTest(
-            getResourceAsBytes(Resource.Path.TIFF),
+            getResourceAsBytes(Resource.MediaType.Path.TIFF),
             IMAGE_GIF,
             APPLICATION_PDF
         )
@@ -234,7 +234,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_tiffToPdf() {
         memoryPdfTest(
-            getResourceAsBytes(Resource.Path.TIFF),
+            getResourceAsBytes(Resource.MediaType.Path.TIFF),
             IMAGE_TIFF,
             APPLICATION_PDF
         )
@@ -243,7 +243,7 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_pdfToPdf() {
         memoryPdfTest(
-            getResourceAsBytes(Resource.Path.PDF),
+            getResourceAsBytes(Resource.MediaType.Path.PDF),
             APPLICATION_PDF,
             APPLICATION_PDF
         )

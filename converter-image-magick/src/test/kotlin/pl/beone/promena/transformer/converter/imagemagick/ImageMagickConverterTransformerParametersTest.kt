@@ -27,56 +27,56 @@ class ImageMagickConverterTransformerParametersTest {
     @Test
     fun transform_toPng_width_shouldKeepAspectRatio() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.PNG),
+            getResourceAsBytes(Resource.MediaType.Path.PNG),
             IMAGE_PNG,
             IMAGE_PNG,
             imageMagickConverterParameters(width = 50),
-            Resource.width / 2,
-            Resource.height / 2,
-            Resource.whitePixels / 4,
-            Resource.darkPixels / 4
+            Resource.MediaType.width / 2,
+            Resource.MediaType.height / 2,
+            Resource.MediaType.whitePixels / 4,
+            Resource.MediaType.darkPixels / 4
         )
     }
 
     @Test
     fun transform_toPdf_width_shouldKeepAspectRatio() {
         memoryPdfTest(
-            getResourceAsBytes(Resource.Path.TIFF),
+            getResourceAsBytes(Resource.MediaType.Path.TIFF),
             IMAGE_TIFF,
             APPLICATION_PDF,
             imageMagickConverterParameters(width = 50),
-            Resource.width / 2,
-            Resource.height / 2,
-            Resource.whitePixels / 4,
-            Resource.darkPixels / 4
+            Resource.MediaType.width / 2,
+            Resource.MediaType.height / 2,
+            Resource.MediaType.whitePixels / 4,
+            Resource.MediaType.darkPixels / 4
         )
     }
 
     @Test
     fun transform_toPng_widthAndHeight_shouldKeepAspectRatio() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.PNG),
+            getResourceAsBytes(Resource.MediaType.Path.PNG),
             IMAGE_PNG,
             IMAGE_PNG,
             imageMagickConverterParameters(height = 75, width = 50),
-            Resource.width / 2,
-            Resource.height / 2,
-            Resource.whitePixels / 4,
-            Resource.darkPixels / 4
+            Resource.MediaType.width / 2,
+            Resource.MediaType.height / 2,
+            Resource.MediaType.whitePixels / 4,
+            Resource.MediaType.darkPixels / 4
         )
     }
 
     @Test
     fun transform_toPdf_widthAndHeight_shouldKeepAspectRatio() {
         memoryPdfTest(
-            getResourceAsBytes(Resource.Path.TIFF),
+            getResourceAsBytes(Resource.MediaType.Path.TIFF),
             IMAGE_TIFF,
             APPLICATION_PDF,
             imageMagickConverterParameters(height = 75, width = 50),
-            Resource.width / 2,
-            Resource.height / 2,
-            Resource.whitePixels / 4,
-            Resource.darkPixels / 4
+            Resource.MediaType.width / 2,
+            Resource.MediaType.height / 2,
+            Resource.MediaType.whitePixels / 4,
+            Resource.MediaType.darkPixels / 4
         )
     }
 
@@ -84,56 +84,56 @@ class ImageMagickConverterTransformerParametersTest {
     @Test
     fun transform_toPng_widthAndIgnoreAspectRatio_shouldBreakAspectRatio() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.PNG),
+            getResourceAsBytes(Resource.MediaType.Path.PNG),
             IMAGE_PNG,
             IMAGE_PNG,
             imageMagickConverterParameters(width = 50, ignoreAspectRatio = true),
-            Resource.width / 2,
-            Resource.height,
-            Resource.whitePixels / 2,
-            Resource.darkPixels / 2
+            Resource.MediaType.width / 2,
+            Resource.MediaType.height,
+            Resource.MediaType.whitePixels / 2,
+            Resource.MediaType.darkPixels / 2
         )
     }
 
     @Test
     fun transform_toPdf_widthAndIgnoreAspectRatio_shouldBreakAspectRatio() {
         memoryPdfTest(
-            getResourceAsBytes(Resource.Path.TIFF),
+            getResourceAsBytes(Resource.MediaType.Path.TIFF),
             IMAGE_TIFF,
             APPLICATION_PDF,
             imageMagickConverterParameters(width = 50, ignoreAspectRatio = true),
-            Resource.width / 2,
-            Resource.height,
-            Resource.whitePixels / 2,
-            Resource.darkPixels / 2
+            Resource.MediaType.width / 2,
+            Resource.MediaType.height,
+            Resource.MediaType.whitePixels / 2,
+            Resource.MediaType.darkPixels / 2
         )
     }
 
     @Test
     fun transform_toPng_heightAndIgnoreAspectRatioAndAllowEnlargement_shouldBreakAspectRatioAndShouldNotEnlargeImage() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.PNG),
+            getResourceAsBytes(Resource.MediaType.Path.PNG),
             IMAGE_PNG,
             IMAGE_PNG,
             imageMagickConverterParameters(height = 50, ignoreAspectRatio = true, allowEnlargement = true),
-            Resource.width,
-            Resource.height / 2,
-            Resource.whitePixels / 2,
-            Resource.darkPixels / 2
+            Resource.MediaType.width,
+            Resource.MediaType.height / 2,
+            Resource.MediaType.whitePixels / 2,
+            Resource.MediaType.darkPixels / 2
         )
     }
 
     @Test
     fun transform_toPdf_heightAndIgnoreAspectRatioAndAllowEnlargement_shouldBreakAspectRatioAndShouldNotEnlargeImage() {
         memoryPdfTest(
-            getResourceAsBytes(Resource.Path.TIFF),
+            getResourceAsBytes(Resource.MediaType.Path.TIFF),
             IMAGE_TIFF,
             APPLICATION_PDF,
             imageMagickConverterParameters(height = 50, ignoreAspectRatio = true, allowEnlargement = true),
-            Resource.width,
-            Resource.height / 2,
-            Resource.whitePixels / 2,
-            Resource.darkPixels / 2
+            Resource.MediaType.width,
+            Resource.MediaType.height / 2,
+            Resource.MediaType.whitePixels / 2,
+            Resource.MediaType.darkPixels / 2
         )
     }
 
@@ -142,56 +142,56 @@ class ImageMagickConverterTransformerParametersTest {
     @Test
     fun transform_toPng_widthAndAllowEnlargements_shouldNotEnlargeImage() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.PNG),
+            getResourceAsBytes(Resource.MediaType.Path.PNG),
             IMAGE_PNG,
             IMAGE_PNG,
             imageMagickConverterParameters(width = 200, allowEnlargement = false),
-            Resource.width,
-            Resource.height,
-            Resource.whitePixels,
-            Resource.darkPixels
+            Resource.MediaType.width,
+            Resource.MediaType.height,
+            Resource.MediaType.whitePixels,
+            Resource.MediaType.darkPixels
         )
     }
 
     @Test
     fun transform_toPdf_widthAndAllowEnlargements_shouldNotEnlargeImage() {
         memoryPdfTest(
-            getResourceAsBytes(Resource.Path.TIFF),
+            getResourceAsBytes(Resource.MediaType.Path.TIFF),
             IMAGE_TIFF,
             APPLICATION_PDF,
             imageMagickConverterParameters(width = 200, allowEnlargement = false),
-            Resource.width,
-            Resource.height,
-            Resource.whitePixels,
-            Resource.darkPixels
+            Resource.MediaType.width,
+            Resource.MediaType.height,
+            Resource.MediaType.whitePixels,
+            Resource.MediaType.darkPixels
         )
     }
 
     @Test
     fun transform_toPng_widthAndAllowEnlargement_shouldEnlargeImage() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.PNG),
+            getResourceAsBytes(Resource.MediaType.Path.PNG),
             IMAGE_PNG,
             IMAGE_PNG,
             imageMagickConverterParameters(width = 200, allowEnlargement = true),
-            Resource.width * 2,
-            Resource.height * 2,
-            Resource.whitePixels * 4,
-            Resource.darkPixels * 4
+            Resource.MediaType.width * 2,
+            Resource.MediaType.height * 2,
+            Resource.MediaType.whitePixels * 4,
+            Resource.MediaType.darkPixels * 4
         )
     }
 
     @Test
     fun transform_toPdf_widthAndAllowEnlargement_shouldEnlargeImage() {
         memoryPdfTest(
-            getResourceAsBytes(Resource.Path.TIFF),
+            getResourceAsBytes(Resource.MediaType.Path.TIFF),
             IMAGE_TIFF,
             APPLICATION_PDF,
             imageMagickConverterParameters(width = 200, allowEnlargement = true),
-            Resource.width * 2,
-            Resource.height * 2,
-            Resource.whitePixels * 4,
-            Resource.darkPixels * 4
+            Resource.MediaType.width * 2,
+            Resource.MediaType.height * 2,
+            Resource.MediaType.whitePixels * 4,
+            Resource.MediaType.darkPixels * 4
         )
     }
 
@@ -200,28 +200,28 @@ class ImageMagickConverterTransformerParametersTest {
     @Test
     fun transform_toPng_widthAndIgnoreAspectRatioAndAllowEnlargement_shouldBreakAspectRatioAndShouldEnlargeImage() {
         memoryImageTest(
-            getResourceAsBytes(Resource.Path.PNG),
+            getResourceAsBytes(Resource.MediaType.Path.PNG),
             IMAGE_PNG,
             IMAGE_PNG,
             imageMagickConverterParameters(width = 200, ignoreAspectRatio = true, allowEnlargement = true),
-            Resource.width * 2,
-            Resource.height,
-            Resource.whitePixels * 2,
-            Resource.darkPixels * 2
+            Resource.MediaType.width * 2,
+            Resource.MediaType.height,
+            Resource.MediaType.whitePixels * 2,
+            Resource.MediaType.darkPixels * 2
         )
     }
 
     @Test
     fun transform_toPdf_widthAndIgnoreAspectRatioAndAllowEnlargement_shouldBreakAspectRatioAndShouldEnlargeImage() {
         memoryPdfTest(
-            getResourceAsBytes(Resource.Path.TIFF),
+            getResourceAsBytes(Resource.MediaType.Path.TIFF),
             IMAGE_TIFF,
             APPLICATION_PDF,
             imageMagickConverterParameters(width = 200, ignoreAspectRatio = true, allowEnlargement = true),
-            Resource.width * 2,
-            Resource.height,
-            Resource.whitePixels * 2,
-            Resource.darkPixels * 2
+            Resource.MediaType.width * 2,
+            Resource.MediaType.height,
+            Resource.MediaType.whitePixels * 2,
+            Resource.MediaType.darkPixels * 2
         )
     }
 }
