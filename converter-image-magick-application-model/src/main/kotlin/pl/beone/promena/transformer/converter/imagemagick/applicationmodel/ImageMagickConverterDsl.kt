@@ -9,8 +9,8 @@ import pl.beone.promena.transformer.contract.transformation.singleTransformation
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterConstants.TRANSFORMER_ID
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterConstants.TRANSFORMER_NAME
 
-fun converterTransformation(targetMediaType: MediaType, parameters: Parameters): Transformation.Single =
+fun converterTransformation(targetMediaType: MediaType, parameters: Parameters = imageMagickConverterParameters()): Transformation.Single =
     singleTransformation(TRANSFORMER_NAME, targetMediaType, parameters)
 
-fun imageMagickConverterTransformation(targetMediaType: MediaType, parameters: Parameters): Transformation.Single =
+fun imageMagickConverterTransformation(targetMediaType: MediaType, parameters: Parameters = imageMagickConverterParameters()): Transformation.Single =
     singleTransformation(TRANSFORMER_ID, targetMediaType, parameters)

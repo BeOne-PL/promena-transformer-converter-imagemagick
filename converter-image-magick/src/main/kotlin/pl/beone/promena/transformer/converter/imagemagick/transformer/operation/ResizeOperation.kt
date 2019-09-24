@@ -4,10 +4,10 @@ import org.im4java.core.IMOperation
 import org.im4java.core.Operation
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaType
 import pl.beone.promena.transformer.contract.model.Parameters
-import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.ALLOW_ENLARGEMENT
-import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.HEIGHT
-import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.IGNORE_ASPECT_RATIO
-import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.WIDTH
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.getAllowEnlargement
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.getHeight
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.getIgnoreAspect
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.getWidth
 
 internal class ResizeOperation : AbstractOperation() {
 
@@ -26,21 +26,21 @@ internal class ResizeOperation : AbstractOperation() {
 
     private fun getWidth(parameters: Parameters): Int? =
         try {
-            parameters.get(WIDTH, Int::class.java)
+            parameters.getWidth()
         } catch (e: NoSuchElementException) {
             null
         }
 
     private fun getHeight(parameters: Parameters): Int? =
         try {
-            parameters.get(HEIGHT, Int::class.java)
+            parameters.getHeight()
         } catch (e: NoSuchElementException) {
             null
         }
 
     private fun determineIgnoreAspectRatio(parameters: Parameters): String =
         try {
-            if (parameters.get(IGNORE_ASPECT_RATIO, Boolean::class.java)) {
+            if (parameters.getIgnoreAspect()) {
                 "!"
             } else {
                 ""
@@ -51,7 +51,7 @@ internal class ResizeOperation : AbstractOperation() {
 
     private fun determineAllowEnlargement(parameters: Parameters): String =
         try {
-            if (parameters.get(ALLOW_ENLARGEMENT, Boolean::class.java)) {
+            if (parameters.getAllowEnlargement()) {
                 ""
             } else {
                 ">"
