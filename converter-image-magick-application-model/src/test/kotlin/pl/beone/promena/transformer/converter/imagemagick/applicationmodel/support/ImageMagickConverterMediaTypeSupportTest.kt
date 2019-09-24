@@ -20,21 +20,21 @@ class ImageMagickConverterMediaTypeSupportTest {
     }
 
     @Test
-    fun isSupported_mediaTypeHasNotSupportedCharset_shouldThrowTransformationNotSupportedException() {
+    fun `isSupported _ media type has not supported charset _ should throw TransformationNotSupportedException`() {
         shouldThrow<TransformationNotSupportedException> {
             isSupported(mediaType(APPLICATION_PDF.mimeType, Charsets.ISO_8859_1), IMAGE_PNG)
         }
     }
 
     @Test
-    fun isSupported_mediaTypeIsNotSupported_shouldThrowTransformationNotSupportedException() {
+    fun `isSupported _ media type is not supported _ should throw TransformationNotSupportedException`() {
         shouldThrow<TransformationNotSupportedException> {
             isSupported(TEXT_XML, IMAGE_PNG)
         }
     }
 
     @Test
-    fun isSupported_targetMediaTypeIsNotSupported_shouldThrowTransformationNotSupportedException() {
+    fun `isSupported _ target media type is not supported _ should throw TransformationNotSupportedException`() {
         shouldThrow<TransformationNotSupportedException> {
             isSupported(IMAGE_PNG, TEXT_XML)
         }
