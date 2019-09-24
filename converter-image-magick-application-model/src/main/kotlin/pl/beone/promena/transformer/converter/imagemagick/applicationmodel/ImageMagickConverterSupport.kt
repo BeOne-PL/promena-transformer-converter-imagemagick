@@ -1,5 +1,3 @@
-@file:JvmName("ImageMagickConverterSupport")
-
 package pl.beone.promena.transformer.converter.imagemagick.applicationmodel
 
 import pl.beone.lib.typeconverter.applicationmodel.exception.TypeConversionException
@@ -25,7 +23,7 @@ object ImageMagickConverterSupport {
     }
 
     object MediaTypeSupport {
-        private val supportedMediaTypes = setOf(
+        private val supportedMediaType = setOf(
             APPLICATION_PDF to IMAGE_PNG,
             APPLICATION_PDF to IMAGE_JPEG,
             APPLICATION_PDF to IMAGE_GIF,
@@ -58,7 +56,7 @@ object ImageMagickConverterSupport {
         )
 
         fun isSupported(mediaType: MediaType, targetMediaType: MediaType) {
-            if (!supportedMediaTypes.contains(mediaType to targetMediaType)) {
+            if (!supportedMediaType.contains(mediaType to targetMediaType)) {
                 throw TransformationNotSupportedException.unsupportedMediaType(mediaType, targetMediaType)
             }
         }

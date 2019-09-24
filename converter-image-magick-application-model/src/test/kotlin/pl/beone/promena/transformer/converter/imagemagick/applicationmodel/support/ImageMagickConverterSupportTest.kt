@@ -8,14 +8,16 @@ import pl.beone.promena.transformer.applicationmodel.mediatype.MediaType
 import pl.beone.promena.transformer.contract.data.dataDescriptor
 import pl.beone.promena.transformer.contract.data.singleDataDescriptor
 import pl.beone.promena.transformer.contract.model.Parameters
-import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterSupport
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterSupport.MediaTypeSupport
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterSupport.ParametersSupport
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterSupport.isSupported
 
 class ImageMagickConverterSupportTest {
 
     @BeforeEach
     fun setUp() {
-        mockkObject(ImageMagickConverterSupport.MediaTypeSupport)
-        mockkObject(ImageMagickConverterSupport.ParametersSupport)
+        mockkObject(MediaTypeSupport)
+        mockkObject(ParametersSupport)
     }
 
     @Test
@@ -25,18 +27,18 @@ class ImageMagickConverterSupportTest {
         val targetMediaType = mockk<MediaType>()
         val parameters = mockk<Parameters>()
 
-        every { ImageMagickConverterSupport.MediaTypeSupport.isSupported(mediaType, targetMediaType) } just Runs
-        every { ImageMagickConverterSupport.ParametersSupport.isSupported(parameters) } just Runs
+        every { MediaTypeSupport.isSupported(mediaType, targetMediaType) } just Runs
+        every { ParametersSupport.isSupported(parameters) } just Runs
 
-        ImageMagickConverterSupport.isSupported(dataDescriptor, targetMediaType, parameters)
+        isSupported(dataDescriptor, targetMediaType, parameters)
 
-        verify(exactly = 1) { ImageMagickConverterSupport.MediaTypeSupport.isSupported(mediaType, targetMediaType) }
-        verify(exactly = 1) { ImageMagickConverterSupport.ParametersSupport.isSupported(parameters) }
+        verify(exactly = 1) { MediaTypeSupport.isSupported(mediaType, targetMediaType) }
+        verify(exactly = 1) { ParametersSupport.isSupported(parameters) }
     }
 
     @AfterEach
     fun tearDown() {
-        unmockkObject(ImageMagickConverterSupport.MediaTypeSupport)
-        unmockkObject(ImageMagickConverterSupport.ParametersSupport)
+        unmockkObject(MediaTypeSupport)
+        unmockkObject(ParametersSupport)
     }
 }
