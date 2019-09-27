@@ -7,13 +7,13 @@
     <parent>
         <groupId>pl.beone.promena.sdk.maven.parent</groupId>
         <artifactId>promena-transformer-parent</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>1.0.0</version>
         <relativePath/>
     </parent>
 
     <groupId>pl.beone.promena.transformer</groupId>
     <artifactId>converter-image-magick-application-model</artifactId>
-    <version>0.9.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <dependencies>
         <dependency>
