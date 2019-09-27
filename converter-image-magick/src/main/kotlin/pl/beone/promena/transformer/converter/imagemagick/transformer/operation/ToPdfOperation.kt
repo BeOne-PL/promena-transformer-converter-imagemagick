@@ -13,7 +13,7 @@ import pl.beone.promena.transformer.contract.model.Parameters
 /**
  * This operation ensures images converted to PDF will retain their original size
  */
-internal class ToPdfOperation : AbstractOperation() {
+internal object ToPdfOperation : AbstractOperation() {
 
     override fun create(mediaType: MediaType, targetMediaType: MediaType, parameters: Parameters): Operation =
         IMOperation()

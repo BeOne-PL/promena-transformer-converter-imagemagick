@@ -9,7 +9,7 @@ import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.getHe
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.getIgnoreAspect
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.getWidth
 
-internal class ResizeOperation : AbstractOperation() {
+internal object ResizeOperation : AbstractOperation() {
 
     override fun create(mediaType: MediaType, targetMediaType: MediaType, parameters: Parameters): Operation =
         IMOperation().apply {

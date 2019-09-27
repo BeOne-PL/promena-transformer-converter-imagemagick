@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit
 internal abstract class AbstractTransformer {
 
     companion object {
-        val additionalOperations = listOf(ToPdfOperation(), ResizeOperation())
+        val additionalOperations = listOf(ToPdfOperation, ResizeOperation)
     }
 
     protected abstract fun getOutputStream(): OutputStream
