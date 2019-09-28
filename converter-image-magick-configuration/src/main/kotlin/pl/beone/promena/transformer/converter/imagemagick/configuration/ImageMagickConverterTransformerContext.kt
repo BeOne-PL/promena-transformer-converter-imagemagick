@@ -9,6 +9,10 @@ import pl.beone.promena.transformer.converter.imagemagick.ImageMagickConverterTr
 class ImageMagickConverterTransformerContext {
 
     @Bean
-    fun imageMagickConverterTransformer(internalCommunicationParameters: CommunicationParameters) =
-        ImageMagickConverterTransformer(internalCommunicationParameters)
+    fun imageMagickConverterTransformer(
+        internalCommunicationParameters: CommunicationParameters
+    ) =
+        ImageMagickConverterTransformer(
+            internalCommunicationParameters
+        )
 }
