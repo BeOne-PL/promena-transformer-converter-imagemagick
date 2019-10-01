@@ -33,5 +33,11 @@ fun Parameters.getAllowEnlargement(): Boolean =
 fun Parameters.getWidth(): Int =
     get(Width.NAME, Width.CLASS)
 
+fun Parameters.getWidthOrNull(): Int? =
+    getOrNull(Width.NAME, Width.CLASS)
+
 fun Parameters.getHeight(): Int =
     get(Height.NAME, Height.CLASS)
+
+fun Parameters.getHeightOrNull(): Int? =
+    getOrNull(Height.NAME, Height.CLASS)

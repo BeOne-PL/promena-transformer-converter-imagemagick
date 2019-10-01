@@ -12,9 +12,11 @@ class ImageMagickConverterParametersDslTest {
             shouldThrow<NoSuchElementException> {
                 it.getWidth()
             }
+            it.getWidthOrNull() shouldBe null
             shouldThrow<NoSuchElementException> {
                 it.getHeight()
             }
+            it.getHeightOrNull() shouldBe null
             it.getIgnoreAspect() shouldBe false
             it.getAllowEnlargement() shouldBe false
         }
