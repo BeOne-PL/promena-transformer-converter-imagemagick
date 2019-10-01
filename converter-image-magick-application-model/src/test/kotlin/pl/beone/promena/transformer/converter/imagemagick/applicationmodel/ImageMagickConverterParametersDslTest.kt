@@ -26,7 +26,9 @@ class ImageMagickConverterParametersDslTest {
     fun `imageMagickConverterParameters _ all parameters`() {
         imageMagickConverterParameters(width = 100, height = 200, ignoreAspectRatio = true, allowEnlargement = true).let {
             it.getWidth() shouldBe 100
+            it.getWidthOrNull() shouldBe 100
             it.getHeight() shouldBe 200
+            it.getHeightOrNull() shouldBe 200
             it.getIgnoreAspect() shouldBe true
             it.getAllowEnlargement() shouldBe true
         }
