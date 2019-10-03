@@ -2,7 +2,7 @@ package pl.beone.promena.transformer.converter.imagemagick
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import pl.beone.lib.junit5.extension.docker.external.DockerExtension
+import pl.beone.lib.junit.jupiter.external.DockerExtension
 import pl.beone.promena.communication.file.model.internal.fileCommunicationParameters
 import pl.beone.promena.communication.memory.model.internal.memoryCommunicationParameters
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource

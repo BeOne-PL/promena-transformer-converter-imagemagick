@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>pl.beone.promena.transformer</groupId>
+    <groupId>pl.beone.promena.base</groupId>
     <artifactId>converter-image-magick-application-model</artifactId>
     <version>1.0.0</version>
 
@@ -26,7 +26,7 @@
         </dependency>
 
         <dependency>
-            <groupId>pl.beone.promena.transformer</groupId>
+            <groupId>pl.beone.promena.base</groupId>
             <artifactId>promena-transformer-internal</artifactId>
         </dependency>
 
