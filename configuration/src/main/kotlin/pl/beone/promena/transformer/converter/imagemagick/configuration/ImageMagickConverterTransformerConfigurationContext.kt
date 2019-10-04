@@ -17,8 +17,14 @@ class ImageMagickConverterTransformerConfigurationContext {
     @Bean
     fun imageMagickConverterTransformerDefaultParameters(environment: Environment): ImageMagickConverterTransformerDefaultParameters =
         ImageMagickConverterTransformerDefaultParameters(
-            environment.getRequiredProperty("$PROPERTY_PREFIX.default.parameters.timeout").let { if (it.isNotBlank()) it.toDuration() else null }
+            environment.getProperty("$PROPERTY_PREFIX.default.parameters.timeout").ifSet { it.toDuration() }
         )
+
+    private fun <T> String?.ifSet(toRun: (String) -> T): T? =
+        when {
+            this == null || isBlank() -> null
+            else -> toRun(this)
+        }
 
     private fun String.toDuration(): Duration =
         Duration.ofMillis(
