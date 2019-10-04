@@ -5,8 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pl.beone.promena.base</groupId>
-    <artifactId>converter-image-magick-root</artifactId>
+    <artifactId>converter-imagemagick-root</artifactId>
     <version>1.0.0</version>
+
+    <name>[TRANSFORMER] Converter - ImageMagick</name>
 
     <repositories>
         <repository>
@@ -27,10 +29,10 @@
     </distributionManagement>
 
     <modules>
-        <module>converter-image-magick-application-model</module>
-        <module>converter-image-magick</module>
-        <module>converter-image-magick-example</module>
-        <module>converter-image-magick-configuration</module>
+        <module>application-model</module>
+        <module>implementation</module>
+        <module>example</module>
+        <module>configuration</module>
     </modules>
     <packaging>pom</packaging>
 
