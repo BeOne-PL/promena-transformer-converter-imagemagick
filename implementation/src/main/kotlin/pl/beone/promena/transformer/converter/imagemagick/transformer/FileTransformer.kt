@@ -7,8 +7,8 @@ import java.io.File
 import java.io.OutputStream
 
 internal class FileTransformer(
-    directory: File,
-    defaultParameters: ImageMagickConverterTransformerDefaultParameters
+    defaultParameters: ImageMagickConverterTransformerDefaultParameters,
+    directory: File
 ) : AbstractTransformer(defaultParameters) {
 
     private val file = createTempFile(directory = directory)

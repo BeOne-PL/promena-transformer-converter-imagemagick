@@ -26,7 +26,7 @@ class ImageMagickConverterTransformer(
     private fun determineTransformer(): AbstractTransformer =
         when (internalCommunicationParameters.getId()) {
             FileCommunicationParameters.ID ->
-                FileTransformer((internalCommunicationParameters as FileCommunicationParameters).getDirectory(), defaultParameters)
+                FileTransformer(defaultParameters, (internalCommunicationParameters as FileCommunicationParameters).getDirectory())
             else ->
                 MemoryTransformer(defaultParameters)
         }
