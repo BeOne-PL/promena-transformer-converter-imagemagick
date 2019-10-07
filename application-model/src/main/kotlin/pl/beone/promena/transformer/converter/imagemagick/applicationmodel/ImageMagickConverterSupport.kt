@@ -17,6 +17,7 @@ import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.Image
 
 object ImageMagickConverterSupport {
 
+    @JvmStatic
     fun isSupported(dataDescriptor: DataDescriptor, targetMediaType: MediaType, parameters: Parameters) {
         dataDescriptor.descriptors.forEach { (_, mediaType) -> MediaTypeSupport.isSupported(mediaType, targetMediaType) }
         ParametersSupport.isSupported(parameters)
@@ -55,6 +56,7 @@ object ImageMagickConverterSupport {
             IMAGE_TIFF to APPLICATION_PDF
         )
 
+        @JvmStatic
         fun isSupported(mediaType: MediaType, targetMediaType: MediaType) {
             if (!supportedMediaType.contains(mediaType to targetMediaType)) {
                 throw TransformationNotSupportedException.unsupportedMediaType(mediaType, targetMediaType)
@@ -63,6 +65,7 @@ object ImageMagickConverterSupport {
     }
 
     object ParametersSupport {
+        @JvmStatic
         fun isSupported(parameters: Parameters) {
             parameters.validate(Width.NAME, Width.CLASS, false)
             parameters.validate(Height.NAME, Height.CLASS, false)
