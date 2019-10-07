@@ -9,6 +9,7 @@ import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstant
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.TEXT_XML
 import pl.beone.promena.transformer.applicationmodel.mediatype.mediaType
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterSupport.MediaTypeSupport.isSupported
+import kotlin.text.Charsets.ISO_8859_1
 
 class ImageMagickConverterMediaTypeSupportTest {
 
@@ -22,7 +23,7 @@ class ImageMagickConverterMediaTypeSupportTest {
     @Test
     fun `isSupported _ media type has not supported charset _ should throw TransformationNotSupportedException`() {
         shouldThrow<TransformationNotSupportedException> {
-            isSupported(mediaType(APPLICATION_PDF.mimeType, Charsets.ISO_8859_1), IMAGE_PNG)
+            isSupported(mediaType(APPLICATION_PDF.mimeType, ISO_8859_1), IMAGE_PNG)
         }
     }
 
