@@ -13,8 +13,8 @@ import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstant
 import pl.beone.promena.transformer.contract.data.DataDescriptor
 import pl.beone.promena.transformer.contract.data.TransformedDataDescriptor
 import pl.beone.promena.transformer.contract.data.singleTransformedDataDescriptor
-import pl.beone.promena.transformer.contract.model.Data
 import pl.beone.promena.transformer.contract.model.Parameters
+import pl.beone.promena.transformer.contract.model.data.Data
 import pl.beone.promena.transformer.converter.imagemagick.ImageMagickConverterTransformerDefaultParameters
 import pl.beone.promena.transformer.converter.imagemagick.transformer.operation.ResizeOperation
 import pl.beone.promena.transformer.converter.imagemagick.transformer.operation.ToPdfOperation

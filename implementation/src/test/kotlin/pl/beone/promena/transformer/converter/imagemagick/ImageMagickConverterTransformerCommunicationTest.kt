@@ -7,10 +7,10 @@ import pl.beone.promena.communication.file.model.internal.fileCommunicationParam
 import pl.beone.promena.communication.memory.model.internal.memoryCommunicationParameters
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource
 import pl.beone.promena.transformer.converter.imagemagick.util.getResourceAsBytes
-import pl.beone.promena.transformer.internal.model.data.FileData
-import pl.beone.promena.transformer.internal.model.data.MemoryData
-import pl.beone.promena.transformer.internal.model.data.toFileData
-import pl.beone.promena.transformer.internal.model.data.toMemoryData
+import pl.beone.promena.transformer.internal.model.data.file.FileData
+import pl.beone.promena.transformer.internal.model.data.file.toFileData
+import pl.beone.promena.transformer.internal.model.data.memory.MemoryData
+import pl.beone.promena.transformer.internal.model.data.memory.toMemoryData
 
 @ExtendWith(DockerExtension::class)
 class ImageMagickConverterTransformerCommunicationTest {

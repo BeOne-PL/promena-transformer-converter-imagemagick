@@ -11,13 +11,13 @@ import pl.beone.promena.transformer.applicationmodel.mediatype.MediaType
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_PNG
 import pl.beone.promena.transformer.contract.communication.CommunicationParameters
 import pl.beone.promena.transformer.contract.data.singleDataDescriptor
-import pl.beone.promena.transformer.contract.model.Data
 import pl.beone.promena.transformer.contract.model.Parameters
+import pl.beone.promena.transformer.contract.model.data.Data
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource
 import pl.beone.promena.transformer.converter.imagemagick.util.ImageTester
 import pl.beone.promena.transformer.converter.imagemagick.util.assert
-import pl.beone.promena.transformer.internal.model.data.MemoryData
-import pl.beone.promena.transformer.internal.model.data.toMemoryData
+import pl.beone.promena.transformer.internal.model.data.memory.MemoryData
+import pl.beone.promena.transformer.internal.model.data.memory.toMemoryData
 import pl.beone.promena.transformer.internal.model.metadata.emptyMetadata
 import pl.beone.promena.transformer.internal.model.parameters.emptyParameters
 import kotlin.reflect.KClass
