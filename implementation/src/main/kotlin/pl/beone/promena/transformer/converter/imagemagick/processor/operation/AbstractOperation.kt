@@ -1,4 +1,4 @@
-package pl.beone.promena.transformer.converter.imagemagick.transformer.operation
+package pl.beone.promena.transformer.converter.imagemagick.processor.operation
 
 import org.im4java.core.Operation
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaType

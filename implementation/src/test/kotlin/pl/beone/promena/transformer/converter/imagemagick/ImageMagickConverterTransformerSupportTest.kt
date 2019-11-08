@@ -18,7 +18,7 @@ class ImageMagickConverterTransformerSupportTest {
         mockkStatic(ImageMagickConverterSupport::class)
         every { ImageMagickConverterSupport.isSupported(dataDescriptor, targetMediaType, parameters) } just Runs
 
-        ImageMagickConverterTransformer(mockk(), mockk())
+        ImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(), mockk(), mockk())
             .isSupported(dataDescriptor, targetMediaType, parameters)
 
         verify(exactly = 1) { ImageMagickConverterSupport.isSupported(dataDescriptor, targetMediaType, parameters) }
