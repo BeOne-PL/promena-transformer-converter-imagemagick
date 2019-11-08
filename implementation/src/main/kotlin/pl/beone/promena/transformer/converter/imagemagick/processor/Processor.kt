@@ -1,5 +1,6 @@
 package pl.beone.promena.transformer.converter.imagemagick.processor
 
+import kotlinx.coroutines.asCoroutineDispatcher
 import org.im4java.core.ConvertCmd
 import org.im4java.core.IMOperation
 import org.im4java.process.Pipe
@@ -18,10 +19,14 @@ import pl.beone.promena.transformer.contract.model.data.WritableData
 import pl.beone.promena.transformer.converter.imagemagick.ImageMagickConverterTransformerDefaultParameters
 import pl.beone.promena.transformer.converter.imagemagick.processor.operation.ResizeOperation
 import pl.beone.promena.transformer.converter.imagemagick.processor.operation.ToPdfOperation
+import pl.beone.promena.transformer.util.execute
 import java.io.InputStream
 import java.io.OutputStream
 import java.time.Duration
+import java.util.concurrent.CancellationException
+import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeoutException
 
 internal class Processor(
     private val defaultParameters: ImageMagickConverterTransformerDefaultParameters
@@ -30,6 +35,8 @@ internal class Processor(
     companion object {
         val additionalOperations = listOf(ToPdfOperation, ResizeOperation)
     }
+
+    private val singleCoroutineDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
 
     fun process(
         singleDataDescriptor: DataDescriptor.Single,
@@ -41,10 +48,15 @@ internal class Processor(
 
         val operation = createOperation(singleDataDescriptor.mediaType, targetMediaType, parameters)
 
-        data.getInputStream().use { inputStream ->
-            transformedWritableData.getOutputStream().use { outputStream ->
-                createProcessTask(inputStream, outputStream, operation)
-                    .also { convert(it, parameters.getTimeoutOrNull() ?: defaultParameters.timeout) }
+        val timeout = parameters.getTimeoutOrNull() ?: defaultParameters.timeout
+        execute(parameters.getTimeoutOrNull() ?: defaultParameters.timeout, singleCoroutineDispatcher) {
+            data.getInputStream().use { inputStream ->
+                transformedWritableData.getOutputStream().use { outputStream ->
+                    execute(timeout) {
+                        createProcessTask(inputStream, outputStream, operation)
+                            .also { convert(it, timeout) }
+                    }
+                }
             }
         }
 
@@ -92,8 +104,8 @@ internal class Processor(
             if (processEvent.exception != null) {
                 throw processEvent.exception
             }
-        } catch (e: Exception) {
-            throw e
+        } catch (e: CancellationException) {
+            throw TimeoutException()
         }
     }
 }

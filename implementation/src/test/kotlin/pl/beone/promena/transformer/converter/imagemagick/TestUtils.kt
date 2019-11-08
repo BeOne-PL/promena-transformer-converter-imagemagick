@@ -27,6 +27,9 @@ private object MemoryCommunicationWritableDataCreator : CommunicationWritableDat
     override fun create(communicationParameters: CommunicationParameters): WritableData = emptyMemoryWritableData()
 }
 
+internal fun createImageMagickConverterTransformer(): ImageMagickConverterTransformer =
+    ImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(null), mockk(), MemoryCommunicationWritableDataCreator)
+
 internal fun imageTest(
     resourcePath: String,
     mediaType: MediaType = IMAGE_PNG,
@@ -35,7 +38,8 @@ internal fun imageTest(
     assertWidth: Int = Resource.MediaType.width,
     assertHeight: Int = Resource.MediaType.height,
     assertWhitePixels: Int = Resource.MediaType.whitePixels,
-    assertDarkPixels: Int = Resource.MediaType.darkPixels
+    assertDarkPixels: Int = Resource.MediaType.darkPixels,
+    imageMagickConverterTransformer: ImageMagickConverterTransformer = createImageMagickConverterTransformer()
 ) {
     test(
         resourcePath,
@@ -45,7 +49,8 @@ internal fun imageTest(
         assertWidth,
         assertHeight,
         assertWhitePixels,
-        assertDarkPixels
+        assertDarkPixels,
+        imageMagickConverterTransformer
     ) {
         ImageTester.of(it.getInputStream())
     }
@@ -59,7 +64,9 @@ internal fun pdfTest(
     assertWidth: Int = Resource.MediaType.width,
     assertHeight: Int = Resource.MediaType.height,
     assertWhitePixels: Int = Resource.MediaType.whitePixels,
-    assertDarkPixels: Int = Resource.MediaType.darkPixels
+    assertDarkPixels: Int = Resource.MediaType.darkPixels,
+    imageMagickConverterTransformer: ImageMagickConverterTransformer = createImageMagickConverterTransformer()
+
 ) {
     test(
         resourcePath,
@@ -69,7 +76,8 @@ internal fun pdfTest(
         assertWidth,
         assertHeight,
         assertWhitePixels,
-        assertDarkPixels
+        assertDarkPixels,
+        imageMagickConverterTransformer
     ) { transformedData ->
         PDDocument.load(transformedData.getInputStream()).use { document ->
             withClue("Document should contain <1> page") { document.pages.count shouldBe 1 }
@@ -92,21 +100,22 @@ private fun test(
     mediaType: MediaType,
     targetMediaType: MediaType,
     parameters: Parameters,
-    assertWith: Int,
+    assertWidth: Int,
     assertHeight: Int,
     assertWhitePixels: Int,
     assertDarkPixels: Int,
+    imageMagickConverterTransformer: ImageMagickConverterTransformer,
     createImageTester: (Data) -> ImageTester
 ) {
     val data = getResourceAsBytes(resourcePath).toMemoryData()
 
-    ImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(null), mockk(), MemoryCommunicationWritableDataCreator)
+    imageMagickConverterTransformer
         .transform(singleDataDescriptor(data, mediaType, emptyMetadata()), targetMediaType, parameters).let { transformedDataDescriptor ->
             withClue("Transformed data should contain only <1> element") { transformedDataDescriptor.descriptors shouldHaveSize 1 }
 
             transformedDataDescriptor.descriptors[0].let {
                 createImageTester(it.data)
-                    .assert(assertWith, assertHeight, assertWhitePixels, assertDarkPixels)
+                    .assert(assertWidth, assertHeight, assertWhitePixels, assertDarkPixels)
                 it.metadata shouldBe emptyMetadata()
             }
         }
