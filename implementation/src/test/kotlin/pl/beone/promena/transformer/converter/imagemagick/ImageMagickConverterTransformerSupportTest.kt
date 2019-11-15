@@ -6,6 +6,7 @@ import pl.beone.promena.transformer.applicationmodel.mediatype.MediaType
 import pl.beone.promena.transformer.contract.data.DataDescriptor
 import pl.beone.promena.transformer.contract.model.Parameters
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterSupport
+import pl.beone.promena.transformer.converter.imagemagick.util.createImageMagickConverterTransformer
 
 class ImageMagickConverterTransformerSupportTest {
 
@@ -18,7 +19,7 @@ class ImageMagickConverterTransformerSupportTest {
         mockkStatic(ImageMagickConverterSupport::class)
         every { ImageMagickConverterSupport.isSupported(dataDescriptor, targetMediaType, parameters) } just Runs
 
-        ImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(), mockk(), mockk())
+        createImageMagickConverterTransformer()
             .isSupported(dataDescriptor, targetMediaType, parameters)
 
         verify(exactly = 1) { ImageMagickConverterSupport.isSupported(dataDescriptor, targetMediaType, parameters) }

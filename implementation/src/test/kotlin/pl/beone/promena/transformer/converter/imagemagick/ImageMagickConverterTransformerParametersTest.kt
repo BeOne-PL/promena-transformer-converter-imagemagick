@@ -13,6 +13,8 @@ import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaTy
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaType.height
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaType.whitePixels
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaType.width
+import pl.beone.promena.transformer.converter.imagemagick.util.imageTest
+import pl.beone.promena.transformer.converter.imagemagick.util.pdfTest
 
 @ExtendWith(DockerExtension::class)
 class ImageMagickConverterTransformerParametersTest {

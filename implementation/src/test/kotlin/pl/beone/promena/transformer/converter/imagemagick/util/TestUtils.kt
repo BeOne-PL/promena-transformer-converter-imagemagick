@@ -1,4 +1,4 @@
-package pl.beone.promena.transformer.converter.imagemagick
+package pl.beone.promena.transformer.converter.imagemagick.util
 
 import io.kotlintest.matchers.collections.shouldHaveSize
 import io.kotlintest.matchers.withClue
@@ -14,10 +14,9 @@ import pl.beone.promena.transformer.contract.data.singleDataDescriptor
 import pl.beone.promena.transformer.contract.model.Parameters
 import pl.beone.promena.transformer.contract.model.data.Data
 import pl.beone.promena.transformer.contract.model.data.WritableData
+import pl.beone.promena.transformer.converter.imagemagick.ImageMagickConverterTransformer
+import pl.beone.promena.transformer.converter.imagemagick.ImageMagickConverterTransformerDefaultParameters
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource
-import pl.beone.promena.transformer.converter.imagemagick.util.ImageTester
-import pl.beone.promena.transformer.converter.imagemagick.util.assert
-import pl.beone.promena.transformer.converter.imagemagick.util.getResourceAsBytes
 import pl.beone.promena.transformer.internal.model.data.memory.emptyMemoryWritableData
 import pl.beone.promena.transformer.internal.model.data.memory.toMemoryData
 import pl.beone.promena.transformer.internal.model.metadata.emptyMetadata
@@ -27,8 +26,18 @@ private object MemoryCommunicationWritableDataCreator : CommunicationWritableDat
     override fun create(communicationParameters: CommunicationParameters): WritableData = emptyMemoryWritableData()
 }
 
-internal fun createImageMagickConverterTransformer(): ImageMagickConverterTransformer =
-    ImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(null), mockk(), MemoryCommunicationWritableDataCreator)
+internal fun createImageMagickConverterTransformer(
+    defaultParameters: ImageMagickConverterTransformerDefaultParameters = ImageMagickConverterTransformerDefaultParameters(
+        null
+    ),
+    communicationParameters: CommunicationParameters = mockk(),
+    communicationWritableDataCreator: CommunicationWritableDataCreator = MemoryCommunicationWritableDataCreator
+): ImageMagickConverterTransformer =
+    ImageMagickConverterTransformer(
+        defaultParameters,
+        communicationParameters,
+        communicationWritableDataCreator
+    )
 
 internal fun imageTest(
     resourcePath: String,
@@ -65,7 +74,7 @@ internal fun pdfTest(
     assertHeight: Int = Resource.MediaType.height,
     assertWhitePixels: Int = Resource.MediaType.whitePixels,
     assertDarkPixels: Int = Resource.MediaType.darkPixels,
-    imageMagickConverterTransformer: ImageMagickConverterTransformer = createImageMagickConverterTransformer()
+    transformer: ImageMagickConverterTransformer = createImageMagickConverterTransformer()
 
 ) {
     test(
@@ -77,7 +86,7 @@ internal fun pdfTest(
         assertHeight,
         assertWhitePixels,
         assertDarkPixels,
-        imageMagickConverterTransformer
+        transformer
     ) { transformedData ->
         PDDocument.load(transformedData.getInputStream()).use { document ->
             withClue("Document should contain <1> page") { document.pages.count shouldBe 1 }
@@ -104,12 +113,12 @@ private fun test(
     assertHeight: Int,
     assertWhitePixels: Int,
     assertDarkPixels: Int,
-    imageMagickConverterTransformer: ImageMagickConverterTransformer,
+    transformer: ImageMagickConverterTransformer,
     createImageTester: (Data) -> ImageTester
 ) {
     val data = getResourceAsBytes(resourcePath).toMemoryData()
 
-    imageMagickConverterTransformer
+    transformer
         .transform(singleDataDescriptor(data, mediaType, emptyMetadata()), targetMediaType, parameters).let { transformedDataDescriptor ->
             withClue("Transformed data should contain only <1> element") { transformedDataDescriptor.descriptors shouldHaveSize 1 }
 

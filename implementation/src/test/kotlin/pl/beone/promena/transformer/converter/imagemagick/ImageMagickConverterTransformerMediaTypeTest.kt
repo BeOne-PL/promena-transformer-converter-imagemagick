@@ -13,6 +13,8 @@ import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaTy
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaType.Path.PDF
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaType.Path.PNG
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaType.Path.TIFF
+import pl.beone.promena.transformer.converter.imagemagick.util.imageTest
+import pl.beone.promena.transformer.converter.imagemagick.util.pdfTest
 
 @ExtendWith(DockerExtension::class)
 class ImageMagickConverterTransformerMediaTypeTest {

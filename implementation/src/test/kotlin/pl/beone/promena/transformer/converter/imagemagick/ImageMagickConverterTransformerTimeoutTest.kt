@@ -6,6 +6,8 @@ import pl.beone.lib.junit.jupiter.external.DockerExtension
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.APPLICATION_PDF
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_PNG
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaType.Path.PDF
+import pl.beone.promena.transformer.converter.imagemagick.util.createImageMagickConverterTransformer
+import pl.beone.promena.transformer.converter.imagemagick.util.imageTest
 import pl.beone.promena.transformer.internal.model.parameters.addTimeout
 import pl.beone.promena.transformer.internal.model.parameters.emptyParameters
 import java.time.Duration
@@ -16,7 +18,8 @@ class ImageMagickConverterTransformerTimeoutTest {
 
     @Test
     fun transform_shouldInterruptExecutionManyTimesAndThenShouldTransformCorrectly() {
-        val imageMagickConverterTransformer = createImageMagickConverterTransformer()
+        val imageMagickConverterTransformer =
+            createImageMagickConverterTransformer()
 
         repeat(5) {
             try {
@@ -31,6 +34,11 @@ class ImageMagickConverterTransformerTimeoutTest {
             }
         }
 
-        imageTest(PDF, APPLICATION_PDF, IMAGE_PNG, imageMagickConverterTransformer = imageMagickConverterTransformer)
+        imageTest(
+            PDF,
+            APPLICATION_PDF,
+            IMAGE_PNG,
+            imageMagickConverterTransformer = imageMagickConverterTransformer
+        )
     }
 }

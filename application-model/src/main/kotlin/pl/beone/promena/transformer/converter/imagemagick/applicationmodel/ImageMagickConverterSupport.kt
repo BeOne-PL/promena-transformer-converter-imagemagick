@@ -73,9 +73,18 @@ object ImageMagickConverterSupport {
             parameters.validate(AllowEnlargement.NAME, AllowEnlargement.CLASS, true)
         }
 
-        private fun Parameters.validate(name: String, clazz: Class<*>, mandatory: Boolean) {
+        private fun <T> Parameters.validate(
+            name: String,
+            clazz: Class<T>,
+            mandatory: Boolean,
+            valueVerifierMessage: String? = null,
+            valueVerifier: (T) -> Boolean = { true }
+        ) {
             try {
-                get(name, clazz)
+                val value = get(name, clazz)
+                if (!valueVerifier(value)) {
+                    throw TransformationNotSupportedException.unsupportedParameterValue(name, value, valueVerifierMessage)
+                }
             } catch (e: NoSuchElementException) {
                 if (mandatory) {
                     throw TransformationNotSupportedException.mandatoryParameter(name)
