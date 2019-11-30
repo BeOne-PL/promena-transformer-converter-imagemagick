@@ -13,6 +13,7 @@ import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaTy
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaType.height
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaType.whitePixels
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaType.width
+import pl.beone.promena.transformer.converter.imagemagick.util.createImageMagickConverterTransformer
 import pl.beone.promena.transformer.converter.imagemagick.util.imageTest
 import pl.beone.promena.transformer.converter.imagemagick.util.pdfTest
 
@@ -45,26 +46,27 @@ class ImageMagickConverterTransformerParametersTest {
     }
 
     @Test
+    fun transform_toPng_width_shouldKeepAspectRatioAndUseDefaultParameters() {
+        imageTest(
+            PNG,
+            IMAGE_PNG,
+            IMAGE_PNG,
+            imageMagickConverterParameters(),
+            width / 2,
+            height / 2,
+            whitePixels / 4,
+            darkPixels / 4,
+            createImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(width = 50))
+        )
+    }
+
+    @Test
     fun transform_toPdf_width_shouldKeepAspectRatio() {
         pdfTest(
             TIFF,
             IMAGE_TIFF,
             APPLICATION_PDF,
             imageMagickConverterParameters(width = 50),
-            width / 2,
-            height / 2,
-            whitePixels / 4,
-            darkPixels / 4
-        )
-    }
-
-    @Test
-    fun transform_toPng_widthAndHeight_shouldKeepAspectRatio() {
-        imageTest(
-            PNG,
-            IMAGE_PNG,
-            IMAGE_PNG,
-            imageMagickConverterParameters(height = 75, width = 50),
             width / 2,
             height / 2,
             whitePixels / 4,
@@ -86,7 +88,23 @@ class ImageMagickConverterTransformerParametersTest {
         )
     }
 
+    @Test
+    fun transform_toPdf_widthAndHeight_shouldKeepAspectRatioAndUseDefaultParameters() {
+        pdfTest(
+            TIFF,
+            IMAGE_TIFF,
+            APPLICATION_PDF,
+            imageMagickConverterParameters(),
+            width / 2,
+            height / 2,
+            whitePixels / 4,
+            darkPixels / 4,
+            createImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(height = 75, width = 50))
+        )
+    }
+
     // ***
+
     @Test
     fun transform_toPng_widthAndIgnoreAspectRatio_shouldBreakAspectRatio() {
         imageTest(
@@ -98,6 +116,21 @@ class ImageMagickConverterTransformerParametersTest {
             height,
             whitePixels / 2,
             darkPixels / 2
+        )
+    }
+
+    @Test
+    fun transform_toPng_widthAndIgnoreAspectRatio_shouldBreakAspectRatioAndUseDefaultParameters() {
+        imageTest(
+            PNG,
+            IMAGE_PNG,
+            IMAGE_PNG,
+            imageMagickConverterParameters(),
+            width / 2,
+            height,
+            whitePixels / 2,
+            darkPixels / 2,
+            createImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(width = 50, ignoreAspectRatio = true))
         )
     }
 
@@ -116,6 +149,21 @@ class ImageMagickConverterTransformerParametersTest {
     }
 
     @Test
+    fun transform_toPdf_widthAndIgnoreAspectRatio_shouldBreakAspectRatioAndUseDefaultParameters() {
+        pdfTest(
+            TIFF,
+            IMAGE_TIFF,
+            APPLICATION_PDF,
+            imageMagickConverterParameters(),
+            width / 2,
+            height,
+            whitePixels / 2,
+            darkPixels / 2,
+            createImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(width = 50, ignoreAspectRatio = true))
+        )
+    }
+
+    @Test
     fun transform_toPng_heightAndIgnoreAspectRatioAndAllowEnlargement_shouldBreakAspectRatioAndShouldNotEnlargeImage() {
         imageTest(
             PNG,
@@ -130,6 +178,23 @@ class ImageMagickConverterTransformerParametersTest {
     }
 
     @Test
+    fun transform_toPng_heightAndIgnoreAspectRatioAndAllowEnlargement_shouldBreakAspectRatioAndShouldNotEnlargeImageAndUseDefaultParameters() {
+        imageTest(
+            PNG,
+            IMAGE_PNG,
+            IMAGE_PNG,
+            imageMagickConverterParameters(),
+            width,
+            height / 2,
+            whitePixels / 2,
+            darkPixels / 2,
+            createImageMagickConverterTransformer(
+                ImageMagickConverterTransformerDefaultParameters(height = 50, ignoreAspectRatio = true, allowEnlargement = true)
+            )
+        )
+    }
+
+    @Test
     fun transform_toPdf_heightAndIgnoreAspectRatioAndAllowEnlargement_shouldBreakAspectRatioAndShouldNotEnlargeImage() {
         pdfTest(
             TIFF,
@@ -140,6 +205,23 @@ class ImageMagickConverterTransformerParametersTest {
             height / 2,
             whitePixels / 2,
             darkPixels / 2
+        )
+    }
+
+    @Test
+    fun transform_toPdf_heightAndIgnoreAspectRatioAndAllowEnlargement_shouldBreakAspectRatioAndShouldNotEnlargeImageAndUseDefaultParameters() {
+        pdfTest(
+            TIFF,
+            IMAGE_TIFF,
+            APPLICATION_PDF,
+            imageMagickConverterParameters(),
+            width,
+            height / 2,
+            whitePixels / 2,
+            darkPixels / 2,
+            createImageMagickConverterTransformer(
+                ImageMagickConverterTransformerDefaultParameters(height = 50, ignoreAspectRatio = true, allowEnlargement = true)
+            )
         )
     }
 
@@ -160,6 +242,21 @@ class ImageMagickConverterTransformerParametersTest {
     }
 
     @Test
+    fun transform_toPng_widthAndAllowEnlargements_shouldNotEnlargeImageAndUseDefaultParameters() {
+        imageTest(
+            PNG,
+            IMAGE_PNG,
+            IMAGE_PNG,
+            imageMagickConverterParameters(),
+            width,
+            height,
+            whitePixels,
+            darkPixels,
+            createImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(width = 200, allowEnlargement = false))
+        )
+    }
+
+    @Test
     fun transform_toPdf_widthAndAllowEnlargements_shouldNotEnlargeImage() {
         pdfTest(
             TIFF,
@@ -170,6 +267,21 @@ class ImageMagickConverterTransformerParametersTest {
             height,
             whitePixels,
             darkPixels
+        )
+    }
+
+    @Test
+    fun transform_toPdf_widthAndAllowEnlargements_shouldNotEnlargeImageAndUseDefaultParameters() {
+        pdfTest(
+            TIFF,
+            IMAGE_TIFF,
+            APPLICATION_PDF,
+            imageMagickConverterParameters(),
+            width,
+            height,
+            whitePixels,
+            darkPixels,
+            createImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(width = 200, allowEnlargement = false))
         )
     }
 
@@ -188,6 +300,21 @@ class ImageMagickConverterTransformerParametersTest {
     }
 
     @Test
+    fun transform_toPng_widthAndAllowEnlargement_shouldEnlargeImageAndUseDefaultParameters() {
+        imageTest(
+            PNG,
+            IMAGE_PNG,
+            IMAGE_PNG,
+            imageMagickConverterParameters(),
+            width * 2,
+            height * 2,
+            whitePixels * 4,
+            darkPixels * 4,
+            createImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(width = 200, allowEnlargement = true))
+        )
+    }
+
+    @Test
     fun transform_toPdf_widthAndAllowEnlargement_shouldEnlargeImage() {
         pdfTest(
             TIFF,
@@ -198,6 +325,21 @@ class ImageMagickConverterTransformerParametersTest {
             height * 2,
             whitePixels * 4,
             darkPixels * 4
+        )
+    }
+
+    @Test
+    fun transform_toPdf_widthAndAllowEnlargement_shouldEnlargeImageAndUseDefaultParameters() {
+        pdfTest(
+            TIFF,
+            IMAGE_TIFF,
+            APPLICATION_PDF,
+            imageMagickConverterParameters(),
+            width * 2,
+            height * 2,
+            whitePixels * 4,
+            darkPixels * 4,
+            createImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(width = 200, allowEnlargement = true))
         )
     }
 
@@ -218,6 +360,23 @@ class ImageMagickConverterTransformerParametersTest {
     }
 
     @Test
+    fun transform_toPng_widthAndIgnoreAspectRatioAndAllowEnlargement_shouldBreakAspectRatioAndShouldEnlargeImageAndUseDefaultParameters() {
+        imageTest(
+            PNG,
+            IMAGE_PNG,
+            IMAGE_PNG,
+            imageMagickConverterParameters(),
+            width * 2,
+            height,
+            whitePixels * 2,
+            darkPixels * 2,
+            createImageMagickConverterTransformer(
+                ImageMagickConverterTransformerDefaultParameters(width = 200, ignoreAspectRatio = true, allowEnlargement = true)
+            )
+        )
+    }
+
+    @Test
     fun transform_toPdf_widthAndIgnoreAspectRatioAndAllowEnlargement_shouldBreakAspectRatioAndShouldEnlargeImage() {
         pdfTest(
             TIFF,
@@ -228,6 +387,23 @@ class ImageMagickConverterTransformerParametersTest {
             height,
             whitePixels * 2,
             darkPixels * 2
+        )
+    }
+
+    @Test
+    fun transform_toPdf_widthAndIgnoreAspectRatioAndAllowEnlargement_shouldBreakAspectRatioAndShouldEnlargeImageAndUseDefaultParameters() {
+        pdfTest(
+            TIFF,
+            IMAGE_TIFF,
+            APPLICATION_PDF,
+            imageMagickConverterParameters(),
+            width * 2,
+            height,
+            whitePixels * 2,
+            darkPixels * 2,
+            createImageMagickConverterTransformer(
+                ImageMagickConverterTransformerDefaultParameters(width = 200, ignoreAspectRatio = true, allowEnlargement = true)
+            )
         )
     }
 }

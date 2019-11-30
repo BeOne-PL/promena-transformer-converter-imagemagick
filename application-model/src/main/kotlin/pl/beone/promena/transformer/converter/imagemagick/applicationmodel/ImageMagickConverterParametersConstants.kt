@@ -25,4 +25,10 @@ object ImageMagickConverterParametersConstants {
         @JvmField
         val CLASS = Boolean::class.java
     }
+
+    object PixelsPerInchDensity {
+        const val NAME = "pixelsPerInchDensity"
+        @JvmField
+        val CLASS = Int::class.java
+    }
 }

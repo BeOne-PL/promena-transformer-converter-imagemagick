@@ -7,6 +7,4 @@ import pl.beone.promena.transformer.contract.model.Parameters
 internal abstract class AbstractOperation {
 
     abstract fun create(mediaType: MediaType, targetMediaType: MediaType, parameters: Parameters): Operation
-
-    abstract fun isSupported(mediaType: MediaType, targetMediaType: MediaType, parameters: Parameters): Boolean
 }

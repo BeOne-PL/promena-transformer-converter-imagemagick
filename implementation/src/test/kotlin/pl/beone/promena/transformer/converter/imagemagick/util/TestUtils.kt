@@ -27,17 +27,11 @@ private object MemoryCommunicationWritableDataCreator : CommunicationWritableDat
 }
 
 internal fun createImageMagickConverterTransformer(
-    defaultParameters: ImageMagickConverterTransformerDefaultParameters = ImageMagickConverterTransformerDefaultParameters(
-        null
-    ),
+    defaultParameters: ImageMagickConverterTransformerDefaultParameters = ImageMagickConverterTransformerDefaultParameters(),
     communicationParameters: CommunicationParameters = mockk(),
     communicationWritableDataCreator: CommunicationWritableDataCreator = MemoryCommunicationWritableDataCreator
 ): ImageMagickConverterTransformer =
-    ImageMagickConverterTransformer(
-        defaultParameters,
-        communicationParameters,
-        communicationWritableDataCreator
-    )
+    ImageMagickConverterTransformer(defaultParameters, communicationParameters, communicationWritableDataCreator)
 
 internal fun imageTest(
     resourcePath: String,

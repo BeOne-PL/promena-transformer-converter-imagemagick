@@ -32,11 +32,12 @@ internal class Processor(
     private val defaultParameters: ImageMagickConverterTransformerDefaultParameters
 ) {
 
-    companion object {
-        val additionalOperations = listOf(ToPdfOperation, ResizeOperation)
-    }
-
     private val singleCoroutineDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+
+    private val additionalOperations = listOf(
+        ResizeOperation(defaultParameters),
+        ToPdfOperation
+    )
 
     fun process(
         singleDataDescriptor: DataDescriptor.Single,
@@ -68,7 +69,6 @@ internal class Processor(
             addImage("-")
 
             additionalOperations
-                .filter { it.isSupported(mediaType, targetMediaType, parameters) }
                 .map { it.create(mediaType, targetMediaType, parameters) }
                 .forEach { addOperation(it) }
 

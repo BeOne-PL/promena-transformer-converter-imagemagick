@@ -6,31 +6,69 @@ import org.junit.jupiter.api.Test
 
 class ImageMagickConverterParametersDslTest {
 
+    companion object {
+        private const val width = 100
+        private const val height = 200
+        private const val ignoreAspect = true
+        private const val allowEnlargement = false
+        private const val pixelsPerInchDensity = 10
+    }
+
     @Test
     fun `imageMagickConverterParameters _ default parameters`() {
-        imageMagickConverterParameters().let {
-            shouldThrow<NoSuchElementException> {
-                it.getWidth()
-            }
-            it.getWidthOrNull() shouldBe null
-            shouldThrow<NoSuchElementException> {
-                it.getHeight()
-            }
-            it.getHeightOrNull() shouldBe null
-            it.getIgnoreAspect() shouldBe false
-            it.getAllowEnlargement() shouldBe false
+        with(imageMagickConverterParameters()) {
+            shouldThrow<NoSuchElementException> { getWidth() }
+            getWidthOrNull() shouldBe null
+            getWidthOrDefault(width) shouldBe width
+
+            shouldThrow<NoSuchElementException> { getHeight() }
+            getHeightOrNull() shouldBe null
+            getHeightOrDefault(height) shouldBe height
+
+            shouldThrow<NoSuchElementException> { getIgnoreAspect() }
+            getIgnoreAspectOrNull() shouldBe null
+            getIgnoreAspectOrDefault(ignoreAspect) shouldBe ignoreAspect
+
+            shouldThrow<NoSuchElementException> { getAllowEnlargement() }
+            getAllowEnlargementOrNull() shouldBe null
+            getAllowEnlargementOrDefault(allowEnlargement) shouldBe allowEnlargement
+
+            shouldThrow<NoSuchElementException> { getPixelsPerInchDensity() }
+            getPixelsPerInchDensityOrNull() shouldBe null
+            getPixelsPerInchDensityOrDefault(pixelsPerInchDensity) shouldBe pixelsPerInchDensity
         }
     }
 
     @Test
     fun `imageMagickConverterParameters _ all parameters`() {
-        imageMagickConverterParameters(width = 100, height = 200, ignoreAspectRatio = true, allowEnlargement = true).let {
-            it.getWidth() shouldBe 100
-            it.getWidthOrNull() shouldBe 100
-            it.getHeight() shouldBe 200
-            it.getHeightOrNull() shouldBe 200
-            it.getIgnoreAspect() shouldBe true
-            it.getAllowEnlargement() shouldBe true
+        with(
+            imageMagickConverterParameters(
+                width = width,
+                height = height,
+                ignoreAspectRatio = ignoreAspect,
+                allowEnlargement = allowEnlargement,
+                pixelsPerInchDensity = pixelsPerInchDensity
+            )
+        ) {
+            getWidth() shouldBe width
+            getWidthOrNull() shouldBe width
+            getWidthOrDefault(width) shouldBe width
+
+            getHeight() shouldBe height
+            getHeightOrNull() shouldBe height
+            getHeightOrDefault(height) shouldBe height
+
+            getIgnoreAspect() shouldBe ignoreAspect
+            getIgnoreAspectOrNull() shouldBe ignoreAspect
+            getIgnoreAspectOrDefault(ignoreAspect) shouldBe ignoreAspect
+
+            getAllowEnlargement() shouldBe allowEnlargement
+            getAllowEnlargementOrNull() shouldBe allowEnlargement
+            getAllowEnlargementOrDefault(allowEnlargement) shouldBe allowEnlargement
+
+            getPixelsPerInchDensity() shouldBe pixelsPerInchDensity
+            getPixelsPerInchDensityOrNull() shouldBe pixelsPerInchDensity
+            getPixelsPerInchDensityOrDefault(pixelsPerInchDensity) shouldBe pixelsPerInchDensity
         }
     }
 }

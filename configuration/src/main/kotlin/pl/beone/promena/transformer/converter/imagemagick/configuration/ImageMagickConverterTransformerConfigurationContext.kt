@@ -17,6 +17,11 @@ class ImageMagickConverterTransformerConfigurationContext {
     @Bean
     fun imageMagickConverterTransformerDefaultParameters(environment: Environment): ImageMagickConverterTransformerDefaultParameters =
         ImageMagickConverterTransformerDefaultParameters(
+            environment.getNotBlankProperty("$PROPERTY_PREFIX.default.parameters.width")?.toInt(),
+            environment.getNotBlankProperty("$PROPERTY_PREFIX.default.parameters.height")?.toInt(),
+            environment.getNotBlankProperty("$PROPERTY_PREFIX.default.parameters.ignore-aspect-ratio")?.toBoolean(),
+            environment.getNotBlankProperty("$PROPERTY_PREFIX.default.parameters.allow-enlargement")?.toBoolean(),
+            environment.getNotBlankProperty("$PROPERTY_PREFIX.default.parameters.pixels-per-inch-density")?.toInt(),
             environment.getNotBlankProperty("$PROPERTY_PREFIX.default.parameters.timeout")?.toDuration()
         )
 }

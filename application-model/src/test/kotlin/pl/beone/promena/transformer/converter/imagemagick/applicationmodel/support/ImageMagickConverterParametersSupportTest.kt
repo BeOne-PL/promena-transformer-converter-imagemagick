@@ -18,7 +18,15 @@ class ImageMagickConverterParametersSupportTest {
     @Test
     fun `isSupported _ all parameters set`() {
         shouldNotThrow<TransformationNotSupportedException> {
-            isSupported(imageMagickConverterParameters(width = 100, height = 200, ignoreAspectRatio = true, allowEnlargement = true))
+            isSupported(
+                imageMagickConverterParameters(
+                    width = 100,
+                    height = 200,
+                    ignoreAspectRatio = true,
+                    allowEnlargement = false,
+                    pixelsPerInchDensity = 72
+                )
+            )
         }
     }
 }
