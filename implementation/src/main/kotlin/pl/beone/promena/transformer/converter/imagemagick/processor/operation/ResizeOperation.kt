@@ -4,6 +4,7 @@ import org.im4java.core.IMOperation
 import org.im4java.core.Operation
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaType
 import pl.beone.promena.transformer.contract.model.Parameters
+import pl.beone.promena.transformer.contract.model.data.Data
 import pl.beone.promena.transformer.converter.imagemagick.ImageMagickConverterTransformerDefaultParameters
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.getAllowEnlargementOrNull
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.getHeightOrNull
@@ -14,7 +15,7 @@ internal class ResizeOperation(
     private val defaultParameters: ImageMagickConverterTransformerDefaultParameters
 ) : AbstractOperation() {
 
-    override fun create(mediaType: MediaType, targetMediaType: MediaType, parameters: Parameters): Operation =
+    override fun create(data: Data, mediaType: MediaType, targetMediaType: MediaType, parameters: Parameters): Operation =
         IMOperation().apply {
             val width = parameters.getWidthOrNull() ?: defaultParameters.width
             val height = parameters.getHeightOrNull() ?: defaultParameters.height
@@ -48,4 +49,7 @@ internal class ResizeOperation(
         } catch (e: NoSuchElementException) {
             ">"
         }
+
+    override fun isSupported(data: Data, mediaType: MediaType, targetMediaType: MediaType, parameters: Parameters): Boolean =
+        true
 }

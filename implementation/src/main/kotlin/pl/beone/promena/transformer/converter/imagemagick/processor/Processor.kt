@@ -15,10 +15,11 @@ import pl.beone.promena.transformer.contract.data.DataDescriptor
 import pl.beone.promena.transformer.contract.data.TransformedDataDescriptor
 import pl.beone.promena.transformer.contract.data.singleTransformedDataDescriptor
 import pl.beone.promena.transformer.contract.model.Parameters
+import pl.beone.promena.transformer.contract.model.data.Data
 import pl.beone.promena.transformer.contract.model.data.WritableData
 import pl.beone.promena.transformer.converter.imagemagick.ImageMagickConverterTransformerDefaultParameters
 import pl.beone.promena.transformer.converter.imagemagick.processor.operation.ResizeOperation
-import pl.beone.promena.transformer.converter.imagemagick.processor.operation.ToPdfOperation
+import pl.beone.promena.transformer.converter.imagemagick.processor.operation.KeepOriginalSizeIfConvertToPdfOperation
 import pl.beone.promena.transformer.util.execute
 import java.io.InputStream
 import java.io.OutputStream
@@ -36,7 +37,7 @@ internal class Processor(
 
     private val additionalOperations = listOf(
         ResizeOperation(defaultParameters),
-        ToPdfOperation
+        KeepOriginalSizeIfConvertToPdfOperation(defaultParameters)
     )
 
     fun process(
@@ -47,7 +48,7 @@ internal class Processor(
     ): TransformedDataDescriptor.Single {
         val (data, _, metadata) = singleDataDescriptor
 
-        val operation = createOperation(singleDataDescriptor.mediaType, targetMediaType, parameters)
+        val operation = createOperation(singleDataDescriptor.data, singleDataDescriptor.mediaType, targetMediaType, parameters)
 
         val timeout = parameters.getTimeoutOrNull() ?: defaultParameters.timeout
         execute(parameters.getTimeoutOrNull() ?: defaultParameters.timeout, singleCoroutineDispatcher) {
@@ -64,12 +65,13 @@ internal class Processor(
         return singleTransformedDataDescriptor(transformedWritableData, metadata)
     }
 
-    private fun createOperation(mediaType: MediaType, targetMediaType: MediaType, parameters: Parameters): IMOperation =
+    private fun createOperation(data: Data, mediaType: MediaType, targetMediaType: MediaType, parameters: Parameters): IMOperation =
         IMOperation().apply {
             addImage("-")
 
             additionalOperations
-                .map { it.create(mediaType, targetMediaType, parameters) }
+                .filter { it.isSupported(data, mediaType, targetMediaType, parameters) }
+                .map { it.create(data, mediaType, targetMediaType, parameters) }
                 .forEach { addOperation(it) }
 
             addImage("${determineExtension(targetMediaType)}:-")

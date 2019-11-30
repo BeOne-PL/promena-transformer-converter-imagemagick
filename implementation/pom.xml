@@ -53,6 +53,11 @@
             <artifactId>im4java</artifactId>
             <version>${im4java.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-imaging</artifactId>
+            <version>1.0-alpha1</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.pdfbox</groupId>

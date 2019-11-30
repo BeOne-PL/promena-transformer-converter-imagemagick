@@ -7,6 +7,6 @@ data class ImageMagickConverterTransformerDefaultParameters(
     val height: Int? = null,
     val ignoreAspectRatio: Boolean? = null,
     val allowEnlargement: Boolean? = null,
-    val pixelsPerInchDensity: Int? = null,
+    val keepOriginalSizeIfConvertToPdf: Boolean? = null,
     val timeout: Duration? = null
 )

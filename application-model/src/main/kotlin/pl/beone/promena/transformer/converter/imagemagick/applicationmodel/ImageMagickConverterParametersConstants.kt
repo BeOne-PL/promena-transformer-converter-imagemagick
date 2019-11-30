@@ -26,9 +26,9 @@ object ImageMagickConverterParametersConstants {
         val CLASS = Boolean::class.java
     }
 
-    object PixelsPerInchDensity {
-        const val NAME = "pixelsPerInchDensity"
+    object KeepOriginalSizeIfConvertToPdf {
+        const val NAME = "keepOriginalSizeIfConvertToPdf"
         @JvmField
-        val CLASS = Int::class.java
+        val CLASS = Boolean::class.java
     }
 }

@@ -13,7 +13,7 @@ import pl.beone.promena.transformer.contract.model.Parameters
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.AllowEnlargement
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.Height
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.IgnoreAspectRatio
-import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.PixelsPerInchDensity
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.KeepOriginalSizeIfConvertToPdf
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.Width
 
 object ImageMagickConverterSupport {
@@ -72,7 +72,7 @@ object ImageMagickConverterSupport {
             parameters.validate(Height.NAME, Height.CLASS, false)
             parameters.validate(IgnoreAspectRatio.NAME, IgnoreAspectRatio.CLASS, false)
             parameters.validate(AllowEnlargement.NAME, AllowEnlargement.CLASS, false)
-            parameters.validate(PixelsPerInchDensity.NAME, PixelsPerInchDensity.CLASS, false)
+            parameters.validate(KeepOriginalSizeIfConvertToPdf.NAME, KeepOriginalSizeIfConvertToPdf.CLASS, false)
         }
 
         private fun <T> Parameters.validate(

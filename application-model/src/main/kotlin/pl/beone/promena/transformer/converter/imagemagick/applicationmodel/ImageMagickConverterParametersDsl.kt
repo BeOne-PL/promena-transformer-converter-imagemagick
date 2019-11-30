@@ -6,7 +6,7 @@ import pl.beone.promena.transformer.contract.model.Parameters
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.AllowEnlargement
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.Height
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.IgnoreAspectRatio
-import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.PixelsPerInchDensity
+import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.KeepOriginalSizeIfConvertToPdf
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.Width
 import pl.beone.promena.transformer.internal.model.parameters.MapParameters
 import pl.beone.promena.transformer.internal.model.parameters.addIfNotNull
@@ -17,14 +17,14 @@ fun imageMagickConverterParameters(
     height: Int? = null,
     ignoreAspectRatio: Boolean? = null,
     allowEnlargement: Boolean? = null,
-    pixelsPerInchDensity: Int? = null
+    keepOriginalSizeIfConvertToPdf: Boolean? = null
 ): MapParameters =
     emptyParameters() addIfNotNull
             (IgnoreAspectRatio.NAME to ignoreAspectRatio) addIfNotNull
             (AllowEnlargement.NAME to allowEnlargement) addIfNotNull
             (Width.NAME to width) addIfNotNull
             (Height.NAME to height) addIfNotNull
-            (PixelsPerInchDensity.NAME to pixelsPerInchDensity)
+            (KeepOriginalSizeIfConvertToPdf.NAME to keepOriginalSizeIfConvertToPdf)
 
 fun Parameters.getIgnoreAspect(): Boolean =
     get(IgnoreAspectRatio.NAME, IgnoreAspectRatio.CLASS)
@@ -62,11 +62,11 @@ fun Parameters.getHeightOrNull(): Int? =
 fun Parameters.getHeightOrDefault(default: Int): Int =
     getOrDefault(Height.NAME, Height.CLASS, default)
 
-fun Parameters.getPixelsPerInchDensity(): Int =
-    get(PixelsPerInchDensity.NAME, PixelsPerInchDensity.CLASS)
+fun Parameters.getKeepOriginalSizeIfConvertToPdf(): Boolean =
+    get(KeepOriginalSizeIfConvertToPdf.NAME, KeepOriginalSizeIfConvertToPdf.CLASS)
 
-fun Parameters.getPixelsPerInchDensityOrNull(): Int? =
-    getOrNull(PixelsPerInchDensity.NAME, PixelsPerInchDensity.CLASS)
+fun Parameters.getKeepOriginalSizeIfConvertToPdfOrNull(): Boolean? =
+    getOrNull(KeepOriginalSizeIfConvertToPdf.NAME, KeepOriginalSizeIfConvertToPdf.CLASS)
 
-fun Parameters.getPixelsPerInchDensityOrDefault(default: Int): Int =
-    getOrDefault(PixelsPerInchDensity.NAME, PixelsPerInchDensity.CLASS, default)
+fun Parameters.getKeepOriginalSizeIfConvertToPdfOrDefault(default: Boolean): Boolean =
+    getOrDefault(KeepOriginalSizeIfConvertToPdf.NAME, KeepOriginalSizeIfConvertToPdf.CLASS, default)

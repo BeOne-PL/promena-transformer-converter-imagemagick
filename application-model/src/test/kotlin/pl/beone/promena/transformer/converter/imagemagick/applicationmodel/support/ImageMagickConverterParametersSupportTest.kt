@@ -24,7 +24,7 @@ class ImageMagickConverterParametersSupportTest {
                     height = 200,
                     ignoreAspectRatio = true,
                     allowEnlargement = false,
-                    pixelsPerInchDensity = 72
+                    keepOriginalSizeIfConvertToPdf = true
                 )
             )
         }

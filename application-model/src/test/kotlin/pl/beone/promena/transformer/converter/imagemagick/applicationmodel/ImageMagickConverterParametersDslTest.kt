@@ -11,7 +11,7 @@ class ImageMagickConverterParametersDslTest {
         private const val height = 200
         private const val ignoreAspect = true
         private const val allowEnlargement = false
-        private const val pixelsPerInchDensity = 10
+        private const val keepOriginalSizeIfConvertToPdf = true
     }
 
     @Test
@@ -33,9 +33,9 @@ class ImageMagickConverterParametersDslTest {
             getAllowEnlargementOrNull() shouldBe null
             getAllowEnlargementOrDefault(allowEnlargement) shouldBe allowEnlargement
 
-            shouldThrow<NoSuchElementException> { getPixelsPerInchDensity() }
-            getPixelsPerInchDensityOrNull() shouldBe null
-            getPixelsPerInchDensityOrDefault(pixelsPerInchDensity) shouldBe pixelsPerInchDensity
+            shouldThrow<NoSuchElementException> { getKeepOriginalSizeIfConvertToPdf() }
+            getKeepOriginalSizeIfConvertToPdfOrNull() shouldBe null
+            getKeepOriginalSizeIfConvertToPdfOrDefault(keepOriginalSizeIfConvertToPdf) shouldBe keepOriginalSizeIfConvertToPdf
         }
     }
 
@@ -47,7 +47,7 @@ class ImageMagickConverterParametersDslTest {
                 height = height,
                 ignoreAspectRatio = ignoreAspect,
                 allowEnlargement = allowEnlargement,
-                pixelsPerInchDensity = pixelsPerInchDensity
+                keepOriginalSizeIfConvertToPdf = keepOriginalSizeIfConvertToPdf
             )
         ) {
             getWidth() shouldBe width
@@ -66,9 +66,9 @@ class ImageMagickConverterParametersDslTest {
             getAllowEnlargementOrNull() shouldBe allowEnlargement
             getAllowEnlargementOrDefault(allowEnlargement) shouldBe allowEnlargement
 
-            getPixelsPerInchDensity() shouldBe pixelsPerInchDensity
-            getPixelsPerInchDensityOrNull() shouldBe pixelsPerInchDensity
-            getPixelsPerInchDensityOrDefault(pixelsPerInchDensity) shouldBe pixelsPerInchDensity
+            getKeepOriginalSizeIfConvertToPdf() shouldBe keepOriginalSizeIfConvertToPdf
+            getKeepOriginalSizeIfConvertToPdf() shouldBe keepOriginalSizeIfConvertToPdf
+            getKeepOriginalSizeIfConvertToPdfOrDefault(keepOriginalSizeIfConvertToPdf) shouldBe keepOriginalSizeIfConvertToPdf
         }
     }
 }
