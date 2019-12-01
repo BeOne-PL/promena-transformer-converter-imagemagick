@@ -1,5 +1,6 @@
 package pl.beone.promena.transformer.converter.imagemagick.processor.operation
 
+import mu.KotlinLogging
 import org.apache.commons.imaging.Imaging
 import org.im4java.core.IMOperation
 import org.im4java.core.Operation
@@ -18,11 +19,20 @@ internal class KeepOriginalSizeIfConvertToPdfOperation(
     private val defaultParameters: ImageMagickConverterTransformerDefaultParameters
 ) : AbstractOperation() {
 
+    companion object {
+        private val logger = KotlinLogging.logger {}
+    }
+
     override fun create(data: Data, mediaType: MediaType, targetMediaType: MediaType, parameters: Parameters): Operation =
-        with(Imaging.getImageInfo(data.getBytes())) {
+        try {
+            with(Imaging.getImageInfo(data.getBytes())) {
+                IMOperation()
+                    .units("PixelsPerInch")
+                    .density(physicalWidthDpi, physicalHeightDpi)
+            }
+        } catch (e: Exception) {
+            logger.warn(e) { "Couldn't determine operation for parameter <keepOriginalSizeIfConvertToPdf>. Given conversion is continued without respecting this parameter" }
             IMOperation()
-                .units("PixelsPerInch")
-                .density(physicalWidthDpi, physicalHeightDpi)
         }
 
     override fun isSupported(data: Data, mediaType: MediaType, targetMediaType: MediaType, parameters: Parameters): Boolean =
