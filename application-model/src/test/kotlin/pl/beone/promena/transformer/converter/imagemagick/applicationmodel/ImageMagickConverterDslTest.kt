@@ -9,10 +9,10 @@ class ImageMagickConverterDslTest {
 
     @Test
     fun imageMagickConverterTransformation() {
-        imageMagickConverterTransformation(IMAGE_JPEG, imageMagickConverterParameters(width = 500)).let {
-            it.transformerId shouldBe TRANSFORMER_ID
-            it.targetMediaType shouldBe IMAGE_JPEG
-            it.parameters.getWidth() shouldBe 500
+        with(imageMagickConverterTransformation(IMAGE_JPEG, imageMagickConverterParameters(width = 500))) {
+            transformerId shouldBe TRANSFORMER_ID
+            targetMediaType shouldBe IMAGE_JPEG
+            parameters.getWidth() shouldBe 500
         }
     }
 }

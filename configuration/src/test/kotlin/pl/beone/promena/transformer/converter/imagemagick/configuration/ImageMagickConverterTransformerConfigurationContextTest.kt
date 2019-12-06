@@ -1,7 +1,7 @@
 package pl.beone.promena.transformer.converter.imagemagick.configuration
 
 import io.kotlintest.shouldBe
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.core.env.ConfigurableEnvironment
 import org.springframework.mock.env.MockEnvironment
@@ -11,7 +11,7 @@ import java.time.Duration
 class ImageMagickConverterTransformerConfigurationContextTest {
 
     @Test
-    fun `setting context _ default parameters`() {
+    fun `setting context _ default`() {
         val environment = createEnvironment(
             mapOf(
                 "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.width" to "",
@@ -37,7 +37,7 @@ class ImageMagickConverterTransformerConfigurationContextTest {
     }
 
     @Test
-    fun `setting context _ all values`() {
+    fun `setting context _ all`() {
         val environment = createEnvironment(
             mapOf(
                 "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.width" to "100",

@@ -112,14 +112,14 @@ private fun test(
 ) {
     val data = getResourceAsBytes(resourcePath).toMemoryData()
 
-    transformer
-        .transform(singleDataDescriptor(data, mediaType, emptyMetadata()), targetMediaType, parameters).let { transformedDataDescriptor ->
-            withClue("Transformed data should contain only <1> element") { transformedDataDescriptor.descriptors shouldHaveSize 1 }
+    with(
+        transformer.transform(singleDataDescriptor(data, mediaType, emptyMetadata()), targetMediaType, parameters)
+    ) {
+        withClue("Transformed data should contain only <1> element") { descriptors shouldHaveSize 1 }
 
-            transformedDataDescriptor.descriptors[0].let {
-                createImageTester(it.data)
-                    .assert(assertWidth, assertHeight, assertWhitePixels, assertDarkPixels)
-                it.metadata shouldBe emptyMetadata()
-            }
+        with(descriptors[0]) {
+            createImageTester(this.data).assert(assertWidth, assertHeight, assertWhitePixels, assertDarkPixels)
+            metadata shouldBe emptyMetadata()
         }
+    }
 }
