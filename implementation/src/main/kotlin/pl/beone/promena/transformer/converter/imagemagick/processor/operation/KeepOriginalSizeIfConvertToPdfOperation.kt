@@ -25,11 +25,10 @@ internal class KeepOriginalSizeIfConvertToPdfOperation(
 
     override fun create(data: Data, mediaType: MediaType, targetMediaType: MediaType, parameters: Parameters): Operation =
         try {
-            with(Imaging.getImageInfo(data.getBytes())) {
-                IMOperation()
-                    .units("PixelsPerInch")
-                    .density(physicalWidthDpi, physicalHeightDpi)
-            }
+            val imageInfo = Imaging.getImageInfo(data.getBytes())
+            IMOperation()
+                .units("PixelsPerInch")
+                .density(imageInfo.physicalWidthDpi, imageInfo.physicalHeightDpi)
         } catch (e: Exception) {
             logger.warn(e) { "Couldn't determine operation for parameter <keepOriginalSizeIfConvertToPdf>. Given conversion is continued without respecting this parameter" }
             IMOperation()

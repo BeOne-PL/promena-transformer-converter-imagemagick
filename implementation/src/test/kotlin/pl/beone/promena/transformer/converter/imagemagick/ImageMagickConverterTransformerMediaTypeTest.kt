@@ -4,10 +4,12 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import pl.beone.lib.junit.jupiter.external.DockerExtension
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.APPLICATION_PDF
+import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_BMP
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_GIF
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_JPEG
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_PNG
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_TIFF
+import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaType.Path.BMP
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaType.Path.GIF
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaType.Path.JPEG
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaType.Path.PDF
@@ -39,6 +41,11 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(PDF, APPLICATION_PDF, IMAGE_TIFF)
     }
 
+    @Test
+    fun transform_pdfToBmp() {
+        imageTest(PDF, APPLICATION_PDF, IMAGE_BMP)
+    }
+
     // ***
 
     @Test
@@ -59,6 +66,11 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_jpegToTiff() {
         imageTest(JPEG, IMAGE_JPEG, IMAGE_TIFF)
+    }
+
+    @Test
+    fun transform_jpegToBmp() {
+        imageTest(JPEG, IMAGE_JPEG, IMAGE_BMP)
     }
 
     // ***
@@ -83,6 +95,11 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(GIF, IMAGE_GIF, IMAGE_TIFF)
     }
 
+    @Test
+    fun transform_gifToBmp() {
+        imageTest(GIF, IMAGE_GIF, IMAGE_BMP)
+    }
+
     // ***
 
     @Test
@@ -103,6 +120,11 @@ class ImageMagickConverterTransformerMediaTypeTest {
     @Test
     fun transform_pngToTiff() {
         imageTest(PNG, IMAGE_PNG, IMAGE_TIFF)
+    }
+
+    @Test
+    fun transform_pngToBmp() {
+        imageTest(PNG, IMAGE_PNG, IMAGE_BMP)
     }
 
     // ***
@@ -127,26 +149,64 @@ class ImageMagickConverterTransformerMediaTypeTest {
         imageTest(TIFF, IMAGE_TIFF, IMAGE_TIFF)
     }
 
+    @Test
+    fun transform_tiffToBmp() {
+        imageTest(TIFF, IMAGE_TIFF, IMAGE_BMP)
+    }
+
+    // ***
+
+    // FIXME error -> convert: fixed point overflow in cHRM Blue Y `-' @ error/png.c/MagickPNGErrorHandler/1751.
+//    @Test
+//    fun transform_bmpToPng() {
+//        imageTest(BMP, IMAGE_BMP, IMAGE_PNG)
+//    }
+
+    @Test
+    fun transform_bmpToJpeg() {
+        imageTest(BMP, IMAGE_BMP, IMAGE_JPEG)
+    }
+
+    @Test
+    fun transform_bmpToGif() {
+        imageTest(BMP, IMAGE_BMP, IMAGE_GIF)
+    }
+
+    @Test
+    fun transform_bmpToTiff() {
+        imageTest(BMP, IMAGE_BMP, IMAGE_TIFF)
+    }
+
+    @Test
+    fun transform_bmpToBmp() {
+        imageTest(BMP, IMAGE_BMP, IMAGE_BMP)
+    }
+
     // ***
 
     @Test
     fun transform_pngToPdf() {
-        pdfTest(TIFF, IMAGE_PNG, APPLICATION_PDF)
+        pdfTest(PNG, IMAGE_PNG, APPLICATION_PDF)
     }
 
     @Test
     fun transform_jpegToPdf() {
-        pdfTest(TIFF, IMAGE_JPEG, APPLICATION_PDF)
+        pdfTest(JPEG, IMAGE_JPEG, APPLICATION_PDF)
     }
 
     @Test
     fun transform_gifToPdf() {
-        pdfTest(TIFF, IMAGE_GIF, APPLICATION_PDF)
+        pdfTest(GIF, IMAGE_GIF, APPLICATION_PDF)
     }
 
     @Test
     fun transform_tiffToPdf() {
         pdfTest(TIFF, IMAGE_TIFF, APPLICATION_PDF)
+    }
+
+    @Test
+    fun transform_bmpToPdf() {
+        pdfTest(BMP, IMAGE_BMP, APPLICATION_PDF)
     }
 
     @Test

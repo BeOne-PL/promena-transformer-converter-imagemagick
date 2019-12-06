@@ -9,6 +9,7 @@ object Resource {
             const val GIF = "/media-type/test.gif"
             const val PNG = "/media-type/test.png"
             const val TIFF = "/media-type/test.tiff"
+            const val BMP = "/media-type/test.bmp"
         }
 
         const val width = 100

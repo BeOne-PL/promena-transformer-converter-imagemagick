@@ -7,6 +7,7 @@ import org.im4java.process.Pipe
 import org.im4java.process.ProcessTask
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaType
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.APPLICATION_PDF
+import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_BMP
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_GIF
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_JPEG
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_PNG
@@ -18,8 +19,8 @@ import pl.beone.promena.transformer.contract.model.Parameters
 import pl.beone.promena.transformer.contract.model.data.Data
 import pl.beone.promena.transformer.contract.model.data.WritableData
 import pl.beone.promena.transformer.converter.imagemagick.ImageMagickConverterTransformerDefaultParameters
-import pl.beone.promena.transformer.converter.imagemagick.processor.operation.ResizeOperation
 import pl.beone.promena.transformer.converter.imagemagick.processor.operation.KeepOriginalSizeIfConvertToPdfOperation
+import pl.beone.promena.transformer.converter.imagemagick.processor.operation.ResizeOperation
 import pl.beone.promena.transformer.util.execute
 import java.io.InputStream
 import java.io.OutputStream
@@ -46,18 +47,14 @@ internal class Processor(
         parameters: Parameters,
         transformedWritableData: WritableData
     ): TransformedDataDescriptor.Single {
-        val (data, _, metadata) = singleDataDescriptor
-
-        val operation = createOperation(singleDataDescriptor.data, singleDataDescriptor.mediaType, targetMediaType, parameters)
+        val (data, mediaType, metadata) = singleDataDescriptor
 
         val timeout = parameters.getTimeoutOrNull() ?: defaultParameters.timeout
-        execute(parameters.getTimeoutOrNull() ?: defaultParameters.timeout, singleCoroutineDispatcher) {
+        execute(timeout, singleCoroutineDispatcher) {
             data.getInputStream().use { inputStream ->
                 transformedWritableData.getOutputStream().use { outputStream ->
-                    execute(timeout) {
-                        createProcessTask(inputStream, outputStream, operation)
-                            .also { convert(it, timeout) }
-                    }
+                    createProcessTask(inputStream, outputStream, createOperation(data, mediaType, targetMediaType, parameters))
+                        .also { convert(it, timeout) }
                 }
             }
         }
@@ -83,6 +80,7 @@ internal class Processor(
             IMAGE_JPEG -> "jpeg"
             IMAGE_GIF -> "gif"
             IMAGE_TIFF -> "tiff"
+            IMAGE_BMP -> "bmp"
             APPLICATION_PDF -> "pdf"
             else -> throw IllegalArgumentException("Couldn't determine extension for <$mediaType>")
         }

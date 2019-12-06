@@ -4,6 +4,7 @@ import pl.beone.lib.typeconverter.applicationmodel.exception.TypeConversionExcep
 import pl.beone.promena.transformer.applicationmodel.exception.transformer.TransformationNotSupportedException
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaType
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.APPLICATION_PDF
+import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_BMP
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_GIF
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_JPEG
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_PNG
@@ -30,31 +31,44 @@ object ImageMagickConverterSupport {
             APPLICATION_PDF to IMAGE_JPEG,
             APPLICATION_PDF to IMAGE_GIF,
             APPLICATION_PDF to IMAGE_TIFF,
+            APPLICATION_PDF to IMAGE_BMP,
             APPLICATION_PDF to APPLICATION_PDF,
 
             IMAGE_JPEG to IMAGE_PNG,
             IMAGE_JPEG to IMAGE_JPEG,
             IMAGE_JPEG to IMAGE_GIF,
             IMAGE_JPEG to IMAGE_TIFF,
+            IMAGE_JPEG to IMAGE_BMP,
             IMAGE_JPEG to APPLICATION_PDF,
 
             IMAGE_GIF to IMAGE_PNG,
             IMAGE_GIF to IMAGE_JPEG,
             IMAGE_GIF to IMAGE_GIF,
             IMAGE_GIF to IMAGE_TIFF,
+            IMAGE_GIF to IMAGE_BMP,
             IMAGE_GIF to APPLICATION_PDF,
 
             IMAGE_PNG to IMAGE_PNG,
             IMAGE_PNG to IMAGE_JPEG,
             IMAGE_PNG to IMAGE_GIF,
             IMAGE_PNG to IMAGE_TIFF,
+            IMAGE_PNG to IMAGE_BMP,
             IMAGE_PNG to APPLICATION_PDF,
 
             IMAGE_TIFF to IMAGE_PNG,
             IMAGE_TIFF to IMAGE_JPEG,
             IMAGE_TIFF to IMAGE_GIF,
             IMAGE_TIFF to IMAGE_TIFF,
-            IMAGE_TIFF to APPLICATION_PDF
+            IMAGE_TIFF to IMAGE_BMP,
+            IMAGE_TIFF to APPLICATION_PDF,
+
+            // it isn't supported. See ImageMagickConverterTransformerMediaTypeTest for more details
+//            IMAGE_BMP to IMAGE_PNG,
+            IMAGE_BMP to IMAGE_JPEG,
+            IMAGE_BMP to IMAGE_GIF,
+            IMAGE_BMP to IMAGE_TIFF,
+            IMAGE_BMP to IMAGE_BMP,
+            IMAGE_BMP to APPLICATION_PDF
         )
 
         @JvmStatic
