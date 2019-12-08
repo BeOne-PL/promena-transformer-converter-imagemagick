@@ -30,7 +30,7 @@ internal class KeepOriginalSizeIfConvertToPdfOperation(
                 .units("PixelsPerInch")
                 .density(imageInfo.physicalWidthDpi, imageInfo.physicalHeightDpi)
         } catch (e: Exception) {
-            logger.warn(e) { "Couldn't determine operation for parameter <keepOriginalSizeIfConvertToPdf>. Given conversion is continued without respecting this parameter" }
+            logger.warn(e) { "Couldn't determine operation for parameter <keepOriginalSizeIfConvertToPdf>. Conversion is continued without respecting this parameter" }
             IMOperation()
         }
 
