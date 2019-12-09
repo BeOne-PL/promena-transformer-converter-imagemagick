@@ -29,24 +29,16 @@ internal class ResizeOperation(
         width != null || height != null
 
     private fun determineIgnoreAspectRatio(parameters: Parameters): String =
-        try {
-            if (parameters.getIgnoreAspectOrNull() ?: defaultParameters.ignoreAspectRatio == true) {
-                "!"
-            } else {
-                ""
-            }
-        } catch (e: NoSuchElementException) {
+        if (parameters.getIgnoreAspectOrNull() ?: defaultParameters.ignoreAspectRatio) {
+            "!"
+        } else {
             ""
         }
 
     private fun determineAllowEnlargement(parameters: Parameters): String =
-        try {
-            if (parameters.getAllowEnlargementOrNull() ?: defaultParameters.allowEnlargement == true) {
-                ""
-            } else {
-                ">"
-            }
-        } catch (e: NoSuchElementException) {
+        if (parameters.getAllowEnlargementOrNull() ?: defaultParameters.allowEnlargement) {
+            ""
+        } else {
             ">"
         }
 

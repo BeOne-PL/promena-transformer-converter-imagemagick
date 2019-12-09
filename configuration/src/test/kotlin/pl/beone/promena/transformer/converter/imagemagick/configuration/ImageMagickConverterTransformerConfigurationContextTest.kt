@@ -16,9 +16,9 @@ class ImageMagickConverterTransformerConfigurationContextTest {
             mapOf(
                 "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.width" to "",
                 "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.height" to "",
-                "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.ignore-aspect-ratio" to "",
-                "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.allow-enlargement" to "",
-                "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.keep-original-size-if-convert-to-pdf" to "",
+                "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.ignore-aspect-ratio" to "false",
+                "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.allow-enlargement" to "true",
+                "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.keep-original-size-if-convert-to-pdf" to "false",
                 "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.timeout" to ""
             )
         )
@@ -29,9 +29,9 @@ class ImageMagickConverterTransformerConfigurationContextTest {
         ) {
             width shouldBe null
             height shouldBe null
-            ignoreAspectRatio shouldBe null
-            allowEnlargement shouldBe null
-            keepOriginalSizeIfConvertToPdf shouldBe null
+            ignoreAspectRatio shouldBe false
+            allowEnlargement shouldBe true
+            keepOriginalSizeIfConvertToPdf shouldBe false
             timeout shouldBe null
         }
     }

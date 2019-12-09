@@ -35,7 +35,7 @@ internal class KeepOriginalSizeIfConvertToPdfOperation(
         }
 
     override fun isSupported(data: Data, mediaType: MediaType, targetMediaType: MediaType, parameters: Parameters): Boolean =
-        parameters.getKeepOriginalSizeIfConvertToPdfOrNull() ?: defaultParameters.keepOriginalSizeIfConvertToPdf == true
+        parameters.getKeepOriginalSizeIfConvertToPdfOrNull() ?: defaultParameters.keepOriginalSizeIfConvertToPdf
                 && listOf(IMAGE_PNG, IMAGE_JPEG, IMAGE_GIF, IMAGE_TIFF).contains(mediaType)
                 && targetMediaType == APPLICATION_PDF
 }

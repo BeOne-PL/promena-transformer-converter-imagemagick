@@ -27,7 +27,11 @@ private object MemoryCommunicationWritableDataCreator : CommunicationWritableDat
 }
 
 internal fun createImageMagickConverterTransformer(
-    defaultParameters: ImageMagickConverterTransformerDefaultParameters = ImageMagickConverterTransformerDefaultParameters(),
+    defaultParameters: ImageMagickConverterTransformerDefaultParameters = ImageMagickConverterTransformerDefaultParameters(
+        ignoreAspectRatio = false,
+        allowEnlargement = true,
+        keepOriginalSizeIfConvertToPdf = true
+    ),
     communicationParameters: CommunicationParameters = mockk(),
     communicationWritableDataCreator: CommunicationWritableDataCreator = MemoryCommunicationWritableDataCreator
 ): ImageMagickConverterTransformer =

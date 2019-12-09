@@ -56,7 +56,14 @@ class ImageMagickConverterTransformerParametersTest {
             height / 2,
             whitePixels / 4,
             darkPixels / 4,
-            createImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(width = 50))
+            createImageMagickConverterTransformer(
+                ImageMagickConverterTransformerDefaultParameters(
+                    width = 50,
+                    ignoreAspectRatio = false,
+                    allowEnlargement = false,
+                    keepOriginalSizeIfConvertToPdf = false
+                )
+            )
         )
     }
 
@@ -99,7 +106,15 @@ class ImageMagickConverterTransformerParametersTest {
             height / 2,
             whitePixels / 4,
             darkPixels / 4,
-            createImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(height = 75, width = 50))
+            createImageMagickConverterTransformer(
+                ImageMagickConverterTransformerDefaultParameters(
+                    height = 75,
+                    width = 50,
+                    ignoreAspectRatio = false,
+                    allowEnlargement = false,
+                    keepOriginalSizeIfConvertToPdf = true
+                )
+            )
         )
     }
 
@@ -130,7 +145,14 @@ class ImageMagickConverterTransformerParametersTest {
             height,
             whitePixels / 2,
             darkPixels / 2,
-            createImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(width = 50, ignoreAspectRatio = true))
+            createImageMagickConverterTransformer(
+                ImageMagickConverterTransformerDefaultParameters(
+                    width = 50,
+                    ignoreAspectRatio = true,
+                    allowEnlargement = false,
+                    keepOriginalSizeIfConvertToPdf = true
+                )
+            )
         )
     }
 
@@ -159,7 +181,14 @@ class ImageMagickConverterTransformerParametersTest {
             height,
             whitePixels / 2,
             darkPixels / 2,
-            createImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(width = 50, ignoreAspectRatio = true))
+            createImageMagickConverterTransformer(
+                ImageMagickConverterTransformerDefaultParameters(
+                    width = 50,
+                    ignoreAspectRatio = true,
+                    allowEnlargement = false,
+                    keepOriginalSizeIfConvertToPdf = true
+                )
+            )
         )
     }
 
@@ -189,7 +218,12 @@ class ImageMagickConverterTransformerParametersTest {
             whitePixels / 2,
             darkPixels / 2,
             createImageMagickConverterTransformer(
-                ImageMagickConverterTransformerDefaultParameters(height = 50, ignoreAspectRatio = true, allowEnlargement = true)
+                ImageMagickConverterTransformerDefaultParameters(
+                    height = 50,
+                    ignoreAspectRatio = true,
+                    allowEnlargement = true,
+                    keepOriginalSizeIfConvertToPdf = true
+                )
             )
         )
     }
@@ -220,7 +254,12 @@ class ImageMagickConverterTransformerParametersTest {
             whitePixels / 2,
             darkPixels / 2,
             createImageMagickConverterTransformer(
-                ImageMagickConverterTransformerDefaultParameters(height = 50, ignoreAspectRatio = true, allowEnlargement = true)
+                ImageMagickConverterTransformerDefaultParameters(
+                    height = 50,
+                    ignoreAspectRatio = true,
+                    allowEnlargement = true,
+                    keepOriginalSizeIfConvertToPdf = true
+                )
             )
         )
     }
@@ -252,7 +291,14 @@ class ImageMagickConverterTransformerParametersTest {
             height,
             whitePixels,
             darkPixels,
-            createImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(width = 200, allowEnlargement = false))
+            createImageMagickConverterTransformer(
+                ImageMagickConverterTransformerDefaultParameters(
+                    width = 200,
+                    allowEnlargement = false,
+                    ignoreAspectRatio = false,
+                    keepOriginalSizeIfConvertToPdf = true
+                )
+            )
         )
     }
 
@@ -281,7 +327,14 @@ class ImageMagickConverterTransformerParametersTest {
             height,
             whitePixels,
             darkPixels,
-            createImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(width = 200, allowEnlargement = false))
+            createImageMagickConverterTransformer(
+                ImageMagickConverterTransformerDefaultParameters(
+                    width = 200,
+                    allowEnlargement = false,
+                    ignoreAspectRatio = false,
+                    keepOriginalSizeIfConvertToPdf = true
+                )
+            )
         )
     }
 
@@ -310,7 +363,14 @@ class ImageMagickConverterTransformerParametersTest {
             height * 2,
             whitePixels * 4,
             darkPixels * 4,
-            createImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(width = 200, allowEnlargement = true))
+            createImageMagickConverterTransformer(
+                ImageMagickConverterTransformerDefaultParameters(
+                    width = 200,
+                    allowEnlargement = true,
+                    ignoreAspectRatio = false,
+                    keepOriginalSizeIfConvertToPdf = true
+                )
+            )
         )
     }
 
@@ -339,7 +399,14 @@ class ImageMagickConverterTransformerParametersTest {
             height * 2,
             whitePixels * 4,
             darkPixels * 4,
-            createImageMagickConverterTransformer(ImageMagickConverterTransformerDefaultParameters(width = 200, allowEnlargement = true))
+            createImageMagickConverterTransformer(
+                ImageMagickConverterTransformerDefaultParameters(
+                    width = 200,
+                    allowEnlargement = true,
+                    ignoreAspectRatio = false,
+                    keepOriginalSizeIfConvertToPdf = true
+                )
+            )
         )
     }
 
@@ -371,7 +438,12 @@ class ImageMagickConverterTransformerParametersTest {
             whitePixels * 2,
             darkPixels * 2,
             createImageMagickConverterTransformer(
-                ImageMagickConverterTransformerDefaultParameters(width = 200, ignoreAspectRatio = true, allowEnlargement = true)
+                ImageMagickConverterTransformerDefaultParameters(
+                    width = 200,
+                    ignoreAspectRatio = true,
+                    allowEnlargement = true,
+                    keepOriginalSizeIfConvertToPdf = true
+                )
             )
         )
     }
@@ -402,7 +474,12 @@ class ImageMagickConverterTransformerParametersTest {
             whitePixels * 2,
             darkPixels * 2,
             createImageMagickConverterTransformer(
-                ImageMagickConverterTransformerDefaultParameters(width = 200, ignoreAspectRatio = true, allowEnlargement = true)
+                ImageMagickConverterTransformerDefaultParameters(
+                    width = 200,
+                    ignoreAspectRatio = true,
+                    allowEnlargement = true,
+                    keepOriginalSizeIfConvertToPdf = true
+                )
             )
         )
     }
