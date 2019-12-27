@@ -6,7 +6,6 @@ import pl.beone.promena.transformer.contract.model.Parameters
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.AllowEnlargement
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.Height
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.IgnoreAspectRatio
-import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.KeepOriginalSizeIfConvertToPdf
 import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.ImageMagickConverterParametersConstants.Width
 import pl.beone.promena.transformer.internal.model.parameters.MapParameters
 import pl.beone.promena.transformer.internal.model.parameters.addIfNotNull
@@ -16,15 +15,13 @@ fun imageMagickConverterParameters(
     width: Int? = null,
     height: Int? = null,
     ignoreAspectRatio: Boolean? = null,
-    allowEnlargement: Boolean? = null,
-    keepOriginalSizeIfConvertToPdf: Boolean? = null
+    allowEnlargement: Boolean? = null
 ): MapParameters =
     emptyParameters() addIfNotNull
             (IgnoreAspectRatio.NAME to ignoreAspectRatio) addIfNotNull
             (AllowEnlargement.NAME to allowEnlargement) addIfNotNull
             (Width.NAME to width) addIfNotNull
-            (Height.NAME to height) addIfNotNull
-            (KeepOriginalSizeIfConvertToPdf.NAME to keepOriginalSizeIfConvertToPdf)
+            (Height.NAME to height)
 
 fun Parameters.getIgnoreAspect(): Boolean =
     get(IgnoreAspectRatio.NAME, IgnoreAspectRatio.CLASS)
@@ -61,12 +58,3 @@ fun Parameters.getHeightOrNull(): Int? =
 
 fun Parameters.getHeightOrDefault(default: Int): Int =
     getOrDefault(Height.NAME, Height.CLASS, default)
-
-fun Parameters.getKeepOriginalSizeIfConvertToPdf(): Boolean =
-    get(KeepOriginalSizeIfConvertToPdf.NAME, KeepOriginalSizeIfConvertToPdf.CLASS)
-
-fun Parameters.getKeepOriginalSizeIfConvertToPdfOrNull(): Boolean? =
-    getOrNull(KeepOriginalSizeIfConvertToPdf.NAME, KeepOriginalSizeIfConvertToPdf.CLASS)
-
-fun Parameters.getKeepOriginalSizeIfConvertToPdfOrDefault(default: Boolean): Boolean =
-    getOrDefault(KeepOriginalSizeIfConvertToPdf.NAME, KeepOriginalSizeIfConvertToPdf.CLASS, default)

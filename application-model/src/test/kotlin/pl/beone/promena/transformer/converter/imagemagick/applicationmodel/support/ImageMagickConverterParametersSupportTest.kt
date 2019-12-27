@@ -23,8 +23,7 @@ class ImageMagickConverterParametersSupportTest {
                     width = 100,
                     height = 200,
                     ignoreAspectRatio = true,
-                    allowEnlargement = false,
-                    keepOriginalSizeIfConvertToPdf = true
+                    allowEnlargement = false
                 )
             )
         }

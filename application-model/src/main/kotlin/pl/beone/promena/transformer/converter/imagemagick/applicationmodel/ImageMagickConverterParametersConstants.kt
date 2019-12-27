@@ -25,10 +25,4 @@ object ImageMagickConverterParametersConstants {
         @JvmField
         val CLASS = Boolean::class.java
     }
-
-    object KeepOriginalSizeIfConvertToPdf {
-        const val NAME = "keepOriginalSizeIfConvertToPdf"
-        @JvmField
-        val CLASS = Boolean::class.java
-    }
 }

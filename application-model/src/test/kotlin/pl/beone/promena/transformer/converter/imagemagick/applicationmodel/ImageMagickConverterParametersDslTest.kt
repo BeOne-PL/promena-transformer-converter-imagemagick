@@ -11,7 +11,6 @@ class ImageMagickConverterParametersDslTest {
         private const val height = 200
         private const val ignoreAspect = true
         private const val allowEnlargement = false
-        private const val keepOriginalSizeIfConvertToPdf = true
     }
 
     @Test
@@ -32,10 +31,6 @@ class ImageMagickConverterParametersDslTest {
             shouldThrow<NoSuchElementException> { getAllowEnlargement() }
             getAllowEnlargementOrNull() shouldBe null
             getAllowEnlargementOrDefault(allowEnlargement) shouldBe allowEnlargement
-
-            shouldThrow<NoSuchElementException> { getKeepOriginalSizeIfConvertToPdf() }
-            getKeepOriginalSizeIfConvertToPdfOrNull() shouldBe null
-            getKeepOriginalSizeIfConvertToPdfOrDefault(keepOriginalSizeIfConvertToPdf) shouldBe keepOriginalSizeIfConvertToPdf
         }
     }
 
@@ -46,8 +41,7 @@ class ImageMagickConverterParametersDslTest {
                 width = width,
                 height = height,
                 ignoreAspectRatio = ignoreAspect,
-                allowEnlargement = allowEnlargement,
-                keepOriginalSizeIfConvertToPdf = keepOriginalSizeIfConvertToPdf
+                allowEnlargement = allowEnlargement
             )
         ) {
             getWidth() shouldBe width
@@ -65,10 +59,6 @@ class ImageMagickConverterParametersDslTest {
             getAllowEnlargement() shouldBe allowEnlargement
             getAllowEnlargementOrNull() shouldBe allowEnlargement
             getAllowEnlargementOrDefault(allowEnlargement) shouldBe allowEnlargement
-
-            getKeepOriginalSizeIfConvertToPdf() shouldBe keepOriginalSizeIfConvertToPdf
-            getKeepOriginalSizeIfConvertToPdf() shouldBe keepOriginalSizeIfConvertToPdf
-            getKeepOriginalSizeIfConvertToPdfOrDefault(keepOriginalSizeIfConvertToPdf) shouldBe keepOriginalSizeIfConvertToPdf
         }
     }
 }

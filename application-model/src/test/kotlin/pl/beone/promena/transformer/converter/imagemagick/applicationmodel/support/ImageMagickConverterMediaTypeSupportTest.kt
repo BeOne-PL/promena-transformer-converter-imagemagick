@@ -5,6 +5,7 @@ import io.kotlintest.shouldThrow
 import org.junit.jupiter.api.Test
 import pl.beone.promena.transformer.applicationmodel.exception.transformer.TransformationNotSupportedException
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.APPLICATION_PDF
+import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_BMP
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.IMAGE_PNG
 import pl.beone.promena.transformer.applicationmodel.mediatype.MediaTypeConstants.TEXT_XML
 import pl.beone.promena.transformer.applicationmodel.mediatype.mediaType
@@ -16,7 +17,7 @@ class ImageMagickConverterMediaTypeSupportTest {
     @Test
     fun isSupported() {
         shouldNotThrow<TransformationNotSupportedException> {
-            isSupported(APPLICATION_PDF, IMAGE_PNG)
+            isSupported(IMAGE_BMP, IMAGE_PNG)
         }
     }
 

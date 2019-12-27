@@ -18,7 +18,6 @@ class ImageMagickConverterTransformerConfigurationContextTest {
                 "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.height" to "",
                 "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.ignore-aspect-ratio" to "false",
                 "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.allow-enlargement" to "true",
-                "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.keep-original-size-if-convert-to-pdf" to "false",
                 "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.timeout" to ""
             )
         )
@@ -31,7 +30,6 @@ class ImageMagickConverterTransformerConfigurationContextTest {
             height shouldBe null
             ignoreAspectRatio shouldBe false
             allowEnlargement shouldBe true
-            keepOriginalSizeIfConvertToPdf shouldBe false
             timeout shouldBe null
         }
     }
@@ -44,7 +42,6 @@ class ImageMagickConverterTransformerConfigurationContextTest {
                 "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.height" to "200",
                 "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.ignore-aspect-ratio" to "true",
                 "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.allow-enlargement" to "false",
-                "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.keep-original-size-if-convert-to-pdf" to "true",
                 "transformer.pl.beone.promena.transformer.converter.imagemagick.default.parameters.timeout" to "5m"
             )
         )
@@ -57,7 +54,6 @@ class ImageMagickConverterTransformerConfigurationContextTest {
             height shouldBe 200
             ignoreAspectRatio shouldBe true
             allowEnlargement shouldBe false
-            keepOriginalSizeIfConvertToPdf shouldBe true
             timeout shouldBe Duration.ofMinutes(5)
         }
     }

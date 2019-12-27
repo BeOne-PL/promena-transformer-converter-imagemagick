@@ -22,7 +22,6 @@ class ImageMagickConverterTransformerConfigurationContext {
             environment.getNotBlankProperty("$PROPERTY_PREFIX.default.parameters.height")?.toInt(),
             environment.getRequiredNotBlankProperty("$PROPERTY_PREFIX.default.parameters.ignore-aspect-ratio").toBoolean(),
             environment.getRequiredNotBlankProperty("$PROPERTY_PREFIX.default.parameters.allow-enlargement").toBoolean(),
-            environment.getRequiredNotBlankProperty("$PROPERTY_PREFIX.default.parameters.keep-original-size-if-convert-to-pdf").toBoolean(),
             environment.getNotBlankProperty("$PROPERTY_PREFIX.default.parameters.timeout")?.toDuration()
         )
 }

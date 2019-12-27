@@ -19,7 +19,6 @@ import pl.beone.promena.transformer.contract.model.Parameters
 import pl.beone.promena.transformer.contract.model.data.Data
 import pl.beone.promena.transformer.contract.model.data.WritableData
 import pl.beone.promena.transformer.converter.imagemagick.ImageMagickConverterTransformerDefaultParameters
-import pl.beone.promena.transformer.converter.imagemagick.processor.operation.KeepOriginalSizeIfConvertToPdfOperation
 import pl.beone.promena.transformer.converter.imagemagick.processor.operation.ResizeOperation
 import pl.beone.promena.transformer.util.execute
 import java.io.InputStream
@@ -37,8 +36,7 @@ internal class Processor(
     private val singleCoroutineDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
 
     private val additionalOperations = listOf(
-        ResizeOperation(defaultParameters),
-        KeepOriginalSizeIfConvertToPdfOperation(defaultParameters)
+        ResizeOperation(defaultParameters)
     )
 
     fun process(

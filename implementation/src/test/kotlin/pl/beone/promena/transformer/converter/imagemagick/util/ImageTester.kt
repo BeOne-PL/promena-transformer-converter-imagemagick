@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage
 import java.io.InputStream
 import javax.imageio.ImageIO
 
+
 internal class ImageTester private constructor(
     private val image: BufferedImage
 ) {
@@ -27,14 +28,17 @@ internal class ImageTester private constructor(
     fun getHeight(): Int = image.height
 
     fun countDarkPixels(): Int =
-        countColorPixels { it.red > 127 && it.green > 127 && it.blue > 127 }
+        countColorPixels { it <= 0.6 }
 
     fun countLightPixels(): Int =
-        countColorPixels { it.red <= 127 && it.green <= 127 && it.blue <= 127 }
+        countColorPixels { it > 0.6 }
 
-    private fun countColorPixels(matchColor: (color: Color) -> Boolean): Int =
+    private fun countColorPixels(matchColor: (hsvValue: Float) -> Boolean): Int =
         (0 until getHeight()).sumBy { h ->
-            (0 until getWidth()).count { w -> matchColor(Color(image.getRGB(w, h))) }
+            (0 until getWidth()).count { w ->
+                val rgb = Color(image.getRGB(w, h))
+                matchColor(Color.RGBtoHSB(rgb.red, rgb.green, rgb.blue, null)[2])
+            }
         }
 }
 

@@ -15,202 +15,168 @@ import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaTy
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaType.Path.PDF
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaType.Path.PNG
 import pl.beone.promena.transformer.converter.imagemagick.model.Resource.MediaType.Path.TIFF
-import pl.beone.promena.transformer.converter.imagemagick.util.imageTest
-import pl.beone.promena.transformer.converter.imagemagick.util.pdfTest
+import pl.beone.promena.transformer.converter.imagemagick.util.test
 
 @ExtendWith(DockerExtension::class)
 class ImageMagickConverterTransformerMediaTypeTest {
 
     @Test
     fun transform_pdfToPng() {
-        imageTest(PDF, APPLICATION_PDF, IMAGE_PNG)
+        test(PDF, APPLICATION_PDF, IMAGE_PNG)
     }
 
     @Test
     fun transform_pdfToJpeg() {
-        imageTest(PDF, APPLICATION_PDF, IMAGE_JPEG)
+        test(PDF, APPLICATION_PDF, IMAGE_JPEG)
     }
 
     @Test
     fun transform_pdfToGif() {
-        imageTest(PDF, APPLICATION_PDF, IMAGE_GIF)
+        test(PDF, APPLICATION_PDF, IMAGE_GIF)
     }
 
     @Test
     fun transform_pdfToTiff() {
-        imageTest(PDF, APPLICATION_PDF, IMAGE_TIFF)
+        test(PDF, APPLICATION_PDF, IMAGE_TIFF)
     }
 
     @Test
     fun transform_pdfToBmp() {
-        imageTest(PDF, APPLICATION_PDF, IMAGE_BMP)
+        test(PDF, APPLICATION_PDF, IMAGE_BMP)
     }
 
     // ***
 
     @Test
     fun transform_jpegToPng() {
-        imageTest(JPEG, IMAGE_JPEG, IMAGE_PNG)
+        test(JPEG, IMAGE_JPEG, IMAGE_PNG)
     }
 
     @Test
     fun transform_jpegToJpeg() {
-        imageTest(JPEG, IMAGE_JPEG, IMAGE_JPEG)
+        test(JPEG, IMAGE_JPEG, IMAGE_JPEG)
     }
 
     @Test
     fun transform_jpegToGif() {
-        imageTest(JPEG, IMAGE_JPEG, IMAGE_GIF)
+        test(JPEG, IMAGE_JPEG, IMAGE_GIF)
     }
 
     @Test
     fun transform_jpegToTiff() {
-        imageTest(JPEG, IMAGE_JPEG, IMAGE_TIFF)
+        test(JPEG, IMAGE_JPEG, IMAGE_TIFF)
     }
 
     @Test
     fun transform_jpegToBmp() {
-        imageTest(JPEG, IMAGE_JPEG, IMAGE_BMP)
+        test(JPEG, IMAGE_JPEG, IMAGE_BMP)
     }
 
     // ***
 
     @Test
     fun transform_gifToPng() {
-        imageTest(GIF, IMAGE_GIF, IMAGE_PNG)
+        test(GIF, IMAGE_GIF, IMAGE_PNG)
     }
 
     @Test
     fun transform_gifToJpeg() {
-        imageTest(GIF, IMAGE_GIF, IMAGE_JPEG)
+        test(GIF, IMAGE_GIF, IMAGE_JPEG)
     }
 
     @Test
     fun transform_gifToGif() {
-        imageTest(GIF, IMAGE_GIF, IMAGE_GIF)
+        test(GIF, IMAGE_GIF, IMAGE_GIF)
     }
 
     @Test
     fun transform_gifToTiff() {
-        imageTest(GIF, IMAGE_GIF, IMAGE_TIFF)
+        test(GIF, IMAGE_GIF, IMAGE_TIFF)
     }
 
     @Test
     fun transform_gifToBmp() {
-        imageTest(GIF, IMAGE_GIF, IMAGE_BMP)
+        test(GIF, IMAGE_GIF, IMAGE_BMP)
     }
 
     // ***
 
     @Test
     fun transform_pngToPng() {
-        imageTest(PNG, IMAGE_PNG, IMAGE_PNG)
+        test(PNG, IMAGE_PNG, IMAGE_PNG)
     }
 
     @Test
     fun transform_pngToJpeg() {
-        imageTest(PNG, IMAGE_PNG, IMAGE_JPEG)
+        test(PNG, IMAGE_PNG, IMAGE_JPEG)
     }
 
     @Test
     fun transform_pngToGif() {
-        imageTest(PNG, IMAGE_PNG, IMAGE_GIF)
+        test(PNG, IMAGE_PNG, IMAGE_GIF)
     }
 
     @Test
     fun transform_pngToTiff() {
-        imageTest(PNG, IMAGE_PNG, IMAGE_TIFF)
+        test(PNG, IMAGE_PNG, IMAGE_TIFF)
     }
 
     @Test
     fun transform_pngToBmp() {
-        imageTest(PNG, IMAGE_PNG, IMAGE_BMP)
+        test(PNG, IMAGE_PNG, IMAGE_BMP)
     }
 
     // ***
 
     @Test
     fun transform_tiffToPng() {
-        imageTest(TIFF, IMAGE_TIFF, IMAGE_PNG)
+        test(TIFF, IMAGE_TIFF, IMAGE_PNG)
     }
 
     @Test
     fun transform_tiffToJpeg() {
-        imageTest(TIFF, IMAGE_TIFF, IMAGE_JPEG)
+        test(TIFF, IMAGE_TIFF, IMAGE_JPEG)
     }
 
     @Test
     fun transform_tiffToGif() {
-        imageTest(TIFF, IMAGE_TIFF, IMAGE_GIF)
+        test(TIFF, IMAGE_TIFF, IMAGE_GIF)
     }
 
     @Test
     fun transform_tiffToTiff() {
-        imageTest(TIFF, IMAGE_TIFF, IMAGE_TIFF)
+        test(TIFF, IMAGE_TIFF, IMAGE_TIFF)
     }
 
     @Test
     fun transform_tiffToBmp() {
-        imageTest(TIFF, IMAGE_TIFF, IMAGE_BMP)
+        test(TIFF, IMAGE_TIFF, IMAGE_BMP)
     }
 
     // ***
 
-    // FIXME error -> convert: fixed point overflow in cHRM Blue Y `-' @ error/png.c/MagickPNGErrorHandler/1751.
-//    @Test
-//    fun transform_bmpToPng() {
-//        imageTest(BMP, IMAGE_BMP, IMAGE_PNG)
-//    }
+    @Test
+    fun transform_bmpToPng() {
+        test(BMP, IMAGE_BMP, IMAGE_PNG)
+    }
 
     @Test
     fun transform_bmpToJpeg() {
-        imageTest(BMP, IMAGE_BMP, IMAGE_JPEG)
+        test(BMP, IMAGE_BMP, IMAGE_JPEG)
     }
 
     @Test
     fun transform_bmpToGif() {
-        imageTest(BMP, IMAGE_BMP, IMAGE_GIF)
+        test(BMP, IMAGE_BMP, IMAGE_GIF)
     }
 
     @Test
     fun transform_bmpToTiff() {
-        imageTest(BMP, IMAGE_BMP, IMAGE_TIFF)
+        test(BMP, IMAGE_BMP, IMAGE_TIFF)
     }
 
     @Test
     fun transform_bmpToBmp() {
-        imageTest(BMP, IMAGE_BMP, IMAGE_BMP)
-    }
-
-    // ***
-
-    @Test
-    fun transform_pngToPdf() {
-        pdfTest(PNG, IMAGE_PNG, APPLICATION_PDF)
-    }
-
-    @Test
-    fun transform_jpegToPdf() {
-        pdfTest(JPEG, IMAGE_JPEG, APPLICATION_PDF)
-    }
-
-    @Test
-    fun transform_gifToPdf() {
-        pdfTest(GIF, IMAGE_GIF, APPLICATION_PDF)
-    }
-
-    @Test
-    fun transform_tiffToPdf() {
-        pdfTest(TIFF, IMAGE_TIFF, APPLICATION_PDF)
-    }
-
-    @Test
-    fun transform_bmpToPdf() {
-        pdfTest(BMP, IMAGE_BMP, APPLICATION_PDF)
-    }
-
-    @Test
-    fun transform_pdfToPdf() {
-        pdfTest(PDF, APPLICATION_PDF, APPLICATION_PDF)
+        test(BMP, IMAGE_BMP, IMAGE_BMP)
     }
 }
