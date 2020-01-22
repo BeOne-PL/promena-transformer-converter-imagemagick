@@ -1,10 +1,10 @@
 # Promena Transformer - `converter - ImageMagick`
 This transformer provides functionality to convert data from one format to another using ImageMagick 7.0.9-10.
 
-Visit [Promena#Transformer](https://gitlab.office.beone.pl/promena/promena#transformer) to understand the repository structure.
+Visit [Promena#Transformer](https://github.com/BeOne-PL/promena#transformer) to understand the repository structure.
 
 ## Transformation [`ImageMagickConverterDsl`](./application-model/src/main/kotlin/pl/beone/promena/transformer/converter/imagemagick/applicationmodel/ImageMagickConverterDsl.kt), [`ImageMagickConverterParametersDsl`](./application-model/src/main/kotlin/pl/beone/promena/transformer/converter/imagemagick/applicationmodel/ImageMagickConverterParametersDsl.kt)
-The [`DataDescriptor`](https://gitlab.office.beone.pl/promena/promena/blob/master/base/promena-transformer/contract/src/main/kotlin/pl/beone/promena/transformer/contract/data/DataDescriptor.kt) has to contain at least one descriptor. If more than one descriptor is passed, the transformation will be performed on each of them separately.
+The [`DataDescriptor`](https://github.com/BeOne-PL/promena/blob/master/base/promena-transformer/contract/src/main/kotlin/pl/beone/promena/transformer/contract/data/DataDescriptor.kt) has to contain at least one descriptor. If more than one descriptor is passed, the transformation will be performed on each of them separately.
 
 ## Support [`ImageMagickConverterSupport`](./application-model/src/main/kotlin/pl/beone/promena/transformer/converter/imagemagick/applicationmodel/ImageMagickConverterSupport.kt)
 ### Media type [`ImageMagickConverterSupport.MediaTypeSupport`](./application-model/src/main/kotlin/pl/beone/promena/transformer/converter/imagemagick/applicationmodel/ImageMagickConverterSupport.kt)
