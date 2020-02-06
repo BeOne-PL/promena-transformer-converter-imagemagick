@@ -13,10 +13,10 @@
 
     <groupId>pl.beone.promena.transformer</groupId>
     <artifactId>converter-imagemagick</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <properties>
-        <converter-imagemagick.version>1.0.0</converter-imagemagick.version>
+        <converter-imagemagick.version>1.0.1</converter-imagemagick.version>
 
         <im4java.version>1.4.0</im4java.version>
 

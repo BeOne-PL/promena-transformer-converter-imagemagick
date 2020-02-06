@@ -12,5 +12,5 @@ import pl.beone.promena.transformer.converter.imagemagick.applicationmodel.Image
 fun converterTransformation(targetMediaType: MediaType, parameters: Parameters): Transformation.Single =
     singleTransformation(TRANSFORMER_NAME, targetMediaType, parameters)
 
-fun imageMagickConverterTransformation(targetMediaType: MediaType, parameters: Parameters = imageMagickConverterParameters()): Transformation.Single =
+fun imageMagickConverterTransformation(targetMediaType: MediaType, parameters: Parameters): Transformation.Single =
     singleTransformation(TRANSFORMER_ID, targetMediaType, parameters)

@@ -13,10 +13,10 @@
 
     <groupId>pl.beone.promena.transformer</groupId>
     <artifactId>converter-imagemagick-example</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <properties>
-        <converter-imagemagick.version>1.0.0</converter-imagemagick.version>
+        <converter-imagemagick.version>1.0.1</converter-imagemagick.version>
     </properties>
 
     <dependencies>

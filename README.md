@@ -50,7 +50,7 @@ The [`DataDescriptor`](https://github.com/BeOne-PL/promena/blob/master/base/prom
 <dependency>
     <groupId>pl.beone.promena.transformer</groupId>
     <artifactId>converter-imagemagick-configuration</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
@@ -59,7 +59,7 @@ The [`DataDescriptor`](https://github.com/BeOne-PL/promena/blob/master/base/prom
 <dependency>
     <groupId>pl.beone.promena.transformer</groupId>
     <artifactId>converter-imagemagick</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
